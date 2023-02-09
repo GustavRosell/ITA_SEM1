@@ -5,12 +5,7 @@
     </head>
     <h1> Opgave 5 - Det grove siuu kunstværk</h1>
 
-    <!-- Min snuspakke siuuuuuuuuuuuuuuuuuuuuuuuuuu hejsa-->
-    <!-- Min snuspakke siuuuuuuuuuuuuuuuuuuuuuuuuuu hejsa-->
-
-    <!-- Min snuspakke siuuuuuuuuuuuuuuuuuuuuuuuuuu hejsa-->
-
-    
+    <!-- Min snuspakke siuuuuuuuuuuuuuuuuuuuuuuuuuu-->
 <svg height="500" width="500">
 
     <style>
@@ -19,15 +14,44 @@
         }
       </style>
 
-    <text x="175" y="100" class="heavy">NICOTINE POUCHES</text>
+    <text x="190" y="100" class="heavy">NICOTINE POUCHES</text>
 
 
+    <!-- Gradient style til midterstreg i 'E' (virker ikke og er ikke brugt :/ ) -->
+    <style>
+      .blackToGrayGradient {
+        fill: linear-gradient(to right, rgb(0, 0, 0), rgb(144, 144, 144));
+      }
+    </style>
+
+
+
+    <!--Circle-->
     <circle cx="250" cy="250" " r="200" stroke="black" stroke-width="5" fill="transparent"/>
+
+    <!--Tegnet 'V' -->
     <line x1="99" y1="380" x2="401" y2="380" stroke="black" stroke-width="5"/>
     <polygon points="100,175 130,250 160,175" style="fill:rgb(144, 144, 144)" />
     <polygon points="110,175 130,230 150,175" style="fill:white" />
 
+    <!-- Tegner 'E' -->
+      <!-- 1. Streg -->
+    <rect x="170" y="175" width="10" height="75" style="fill:rgb(144, 144, 144)"/>
+      <!-- Cover 'E' -->
+    <polygon points="175,175 160,200 170,175" style="fill:rgb(255, 255, 255)" />
+      <!-- x-akse stregerne -->
+    <rect x="175" y="175" width="35" height="8" style="fill:rgb(144, 144, 144)"/>
+    <rect x="180" y="208" width="30" height="8" class="blackToGrayGradient"/>
+    <rect x="175" y="242" width="35" height="8" style="fill:rgb(144, 144, 144)"/>
+      <!-- Cover streg 2. -->
+      <polygon points="215,210 210,200 200,225" style="fill:rgb(240, 240, 240)" />
 
+
+    <!-- Tegner 'L' -->
+      <!-- 1. Streg (y-akse) -->
+    <rect x="225" y="175" width="10" height="75" style="fill:rgb(255, 0, 0)"/>
+      <!-- 2. Streg (x-akse) -->
+    <rect x="225" y="242" width="35" height="8" style="fill:rgb(255, 0, 0)"/>
   </svg>
 
 </html>
