@@ -1,57 +1,100 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Opgave 5 - Kunstværk siuu</title>
-    </head>
-    <h1> Opgave 5 - Det grove siuu kunstværk</h1>
+  <head>
+    <title> Opgave 5 - Kunstværk siuu</title>
+  </head>
+  <h1> Opgave 5 - Det grove siuu kunstværk</h1>
 
-    <!-- Min snuspakke siuuuuuuuuuuuuuuuuuuuuuuuuuu-->
+  <!-- Min snuspakke siuuuuuuuuuuuuuuuuuuuuuuuuuu-->
+
 <svg height="500" width="500">
 
-    <style>
-        .heavy {
-          font: regular 4pxAndale Mono;
-        }
-      </style>
+  <!-- .gradient virker slet ikke -->
+  <style>
+    .regular {
+      font-family: Times new Roman;
+      font-weight: bolder;
+      font-size: 8px;
+    }
 
-    <text x="190" y="100" class="heavy">NICOTINE POUCHES</text>
+    .bold {
+      font-family: Times new Roman;
+      font-weight: bold;
+      font-size: 12px;
+    
+    }
+  </style>
 
 
-    <!-- Gradient style til midterstreg i 'E' (virker ikke og er ikke brugt :/ ) -->
-    <style>
-      .blackToGrayGradient {
-        fill: linear-gradient(to right, rgb(0, 0, 0), rgb(144, 144, 144));
-      }
-    </style>
+  <!-- Tekst -->
+  <!-- Top -->
+  <text x="175" y="140" class="regular">NICOTINE POUCHES</text>
+
+  <!-- Mid -->
+  <text x="190" y="275" style="fill: red; font-family: Times new Roman; font-weight: regular; font-size: 12px;">FREEZE</text>
+  <text x="242" y="275" style="fill: red; font-family: Times new Roman; font-weight: regular; font-size: 12px;">4</text>
+
+  <!-- Bot - (Copy pasta 2x for at gøre dem tykkere) -->
+  <text x="162" y="378" class="bold">Dette produkt indeholder</text>
+  <text x="162" y="378" class="bold">Dette produkt indeholder</text>
+  <text x="165" y="390" class="bold">nikotin, som er et yderst</text>
+  <text x="165" y="390" class="bold">nikotin, som er et yderst</text>
+  <text x="167" y="402" class="bold">afhængighedsskabende</text>
+  <text x="167" y="402" class="bold">afhængighedsskabende</text>
+  <text x="217" y="414" class="bold">stof</text>
+  <text x="217" y="414" class="bold">stof</text>
+
+ 
+  <!-- Circle + linje  + l -->
+  <circle cx="220" cy="250" r="175" stroke="black" stroke-width="5" fill="transparent"/>
+  <line x1="84" y1="360" x2="355" y2="360" stroke="black" stroke-width="5"/>
+  <line x1="238" y1="267" x2="238" y2="275" stroke="red" stroke-width="0.5"/>
 
 
+  <!-- Tegner 'V' -->
+  <polygon points="100,175 130,250 160,175" style="fill:rgb(144, 144, 144)" />
+  <polygon points="110,175 130,230 150,175" style="fill:white" />
 
-    <!--Circle-->
-    <circle cx="250" cy="250" " r="200" stroke="black" stroke-width="5" fill="transparent"/>
+  <!-- Tegner 'E' -->
+    <!-- 1. Streg -->
+  <rect x="170" y="175" width="10" height="75" style="fill:rgb(144, 144, 144)"/>
 
-    <!--Tegnet 'V' -->
-    <line x1="99" y1="380" x2="401" y2="380" stroke="black" stroke-width="5"/>
-    <polygon points="100,175 130,250 160,175" style="fill:rgb(144, 144, 144)" />
-    <polygon points="110,175 130,230 150,175" style="fill:white" />
-
-    <!-- Tegner 'E' -->
-      <!-- 1. Streg -->
-    <rect x="170" y="175" width="10" height="75" style="fill:rgb(144, 144, 144)"/>
-      <!-- Cover 'E' -->
+    <!-- Cover 'E' -->
     <polygon points="175,175 160,200 170,175" style="fill:rgb(255, 255, 255)" />
-      <!-- x-akse stregerne -->
-    <rect x="175" y="175" width="35" height="8" style="fill:rgb(144, 144, 144)"/>
-    <rect x="180" y="208" width="30" height="8" class="blackToGrayGradient"/>
-    <rect x="175" y="242" width="35" height="8" style="fill:rgb(144, 144, 144)"/>
-      <!-- Cover streg 2. -->
-      <polygon points="215,210 210,200 200,225" style="fill:rgb(240, 240, 240)" />
 
+    <!-- x-akse stregerne -->
+    <rect x="175" y="175" width="35" height="8" style="fill:rgb(144, 144, 144)"/>
+
+
+    <!-- 2. line (make this gradient with the colors black to gray) - (style virker ikke) -->
+   <!--  <rect x="180" y="208" width="30" height="8" class="gradient" /> -->
+   <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:black;stop-opacity:1" />
+      <stop offset="10%" style="stop-color:rgb(144, 144, 144);stop-opacity:1" />
+  </linearGradient>
+</defs>
+
+<rect x="180" y="208" width="30" height="8" fill="url(#grad1)" />
+
+    <!-- 3. line -->
+    <rect x="175" y="242" width="35" height="8" style="fill:rgb(144, 144, 144)"/>
+
+    <!-- Cover streg 2. -->
+    <polygon points="215,215 210,200 190,225" style="fill:rgb(255, 255, 255)" />
 
     <!-- Tegner 'L' -->
-      <!-- 1. Streg (y-akse) -->
+    <!-- 1. Streg (y-akse) -->
     <rect x="225" y="175" width="10" height="75" style="fill:rgb(255, 0, 0)"/>
-      <!-- 2. Streg (x-akse) -->
-    <rect x="225" y="242" width="35" height="8" style="fill:rgb(255, 0, 0)"/>
-  </svg>
 
+    <!-- 2. Streg (x-akse) -->
+    <rect x="225" y="242" width="35" height="8" style="fill:rgb(255, 0, 0)"/>
+
+  <!-- Cover 'L' (x-akse) -->
+  <polygon points="260,250 255,240 290,225" style="fill:rgb(255, 255, 255)" />
+
+  <!-- Tegner 'O' -->
+  <circle cx="295" cy="212" r="35" stroke="rgb(144, 144, 144)"" stroke-width="10" fill="transparent"/>
+
+</svg>
 </html>
