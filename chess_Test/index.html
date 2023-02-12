@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <table id="chessboard">
+        <tbody>
+            <tr>
+                <td id="a8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9814;</td>
+                <td id="b8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9816;</td>
+                <td id="c8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9815;</td>
+                <td id="d8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9813;</td>
+                <td id="e8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9812;</td>
+                <td id="f8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9815;</td>
+                <td id="g8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9816;</td>
+                <td id="h8" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9814;</td>
+            </tr>
+            <tr>
+                <td id="a7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="b7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="c7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="d7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="e7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="f7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="g7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+                <td id="h7" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9817;</td>
+            </tr>
+            <tr>
+                <td id="a6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="b6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="c6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="d6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="e6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="f6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="g6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="h6" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+            </tr>
+            <tr>
+                <td id="a5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="b5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="c5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="d5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="e5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="f5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="g5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="h5" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+            </tr>
+            <tr>
+                <td id="a4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="b4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="c4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="d4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="e4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="f4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="g4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="h4" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+            </tr>
+            <tr>
+                <td id="a3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="b3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="c3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="d3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="e3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="f3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="g3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+                <td id="h3" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)"></td>
+            </tr>
+            <tr>
+                <td id="a2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="b2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="c2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="d2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="e2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="f2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="g2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+                <td id="h2" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9823;</td>
+            </tr>
+            <tr>
+                <td id="a1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9820;</td>
+                <td id="b1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9822;</td>
+                <td id="c1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9821;</td>
+                <td id="d1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9818;</td>
+                <td id="e1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9819;</td>
+                <td id="f1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9821;</td>
+                <td id="g1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9822;</td>
+                <td id="h1" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)"
+                    ondragstart="drag(event)">&#9820;</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let state = [];
+        for (let i = 0; i < 8; i++) {
+            state[i] = [];
+            for (let j = 0; j < 8; j++) {
+                state[i][j] = '';
+            }
+        }
+
+        function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var sourceSquare = ev.dataTransfer.getData("text");
+    var sourcePiece = document.getElementById(sourceSquare).innerHTML;
+    var targetSquare = ev.target.id;
+    if (isValidMove(sourceSquare, targetSquare, sourcePiece)) {
+        ev.target.innerHTML = sourcePiece;
+        document.getElementById(sourceSquare).innerHTML = "";
+    }
+}
+
+function isValidMove(sourceSquare, targetSquare, sourcePiece) {
+    switch (sourcePiece) {
+        case "&#9814;": // white knight
+            return isValidKnightMove(sourceSquare, targetSquare);
+        case "&#9816;": // white bishop
+            return isValidBishopMove(sourceSquare, targetSquare);
+        case "&#9815;": // white rook
+            return isValidRookMove(sourceSquare, targetSquare);
+        case "&#9813;": // white queen
+            return isValidQueenMove(sourceSquare, targetSquare);
+        case "&#9812;": // white king
+            return isValidKingMove(sourceSquare, targetSquare);
+        case "&#9817;": // white pawn
+            return isValidPawnMove(sourceSquare, targetSquare);
+        case "&#9823;": // black knight
+            return isValidKnightMove(sourceSquare, targetSquare);
+        case "&#9821;": // black bishop
+            return isValidBishopMove(sourceSquare, targetSquare);
+        case "&#9822;": // black rook
+            return isValidRookMove(sourceSquare, targetSquare);
+        case "&#9820;": // black queen
+            return isValidQueenMove(sourceSquare, targetSquare);
+        case "&#9818;": // black king
+            return isValidKingMove(sourceSquare, targetSquare);
+        case "&#9819;": // black pawn
+            return isValidPawnMove(sourceSquare, targetSquare);
+    }
+}
+
+function isValidKnightMove(currentSquare, targetSquare) {
+    let currentRow = currentSquare[0];
+    let currentCol = currentSquare[1];
+    let targetRow = targetSquare[0];
+    let targetCol = targetSquare[1];
+
+    let rowDiff = Math.abs(currentRow - targetRow);
+    let colDiff = Math.abs(currentCol - targetCol);
+
+    if ((rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2)) {
+        return true;
+    }
+
+    return false;
+}
+
+function isValidBishopMove(sourceSquare, targetSquare) {
+    // Add logic for bishop's move here
+
+}
+
+function isValidKingMove(sourceSquare, targetSquare) {
+    // Add logic for king's move here
+
+}
+
+function isValidQueenMove(sourceSquare, targetSquare) {
+    // Add logic for queen's move here
+
+}
+
+function isValidRookMove(sourceSquare, targetSquare) {
+    // Add logic for rook's move here
+
+}
+
+function isValidPawnMove(currentSquare, targetSquare) {
+    let currRow = currentSquare[1];
+    let currCol = currentSquare.charCodeAt(0) - 97;
+    let targetRow = targetSquare[1];
+    let targetCol = targetSquare.charCodeAt(0) - 97;
+
+    // Check if the move is straight forward
+    if (currCol === targetCol && targetRow - currRow === 1) {
+        return true;
+    }
+
+    // Check if the move is diagonally forward (to capture a piece)
+    if (Math.abs(currCol - targetCol) === 1 && targetRow - currRow === 1) {
+        return true;
+    }
+
+    // Check if the pawn is moving two squares forward from its starting position
+    if (currRow === 2 && targetRow - currRow === 2 && currCol === targetCol) {
+        return true;
+    }
+
+    // Check if the pawn is moving two squares forward from its starting position
+    if (currRow === 7 && targetRow - currRow === -2 && currCol === targetCol) {
+        return true;
+    }
+
+    return false;
+}
+
+    </script>
+</body>
+</html>

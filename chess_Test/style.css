@@ -1,0 +1,18 @@
+#chessboard td {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+
+
+#chessboard tr:nth-child(odd) td:nth-of-type(even),
+#chessboard tr:nth-child(even) td:nth-of-type(odd) {
+    background-color: #b58863;
+}
+
+#chessboard tr:nth-child(odd) td:nth-of-type(odd),
+#chessboard tr:nth-child(even) td:nth-of-type(even) {
+    background-color: #ffd2ae;
+}
