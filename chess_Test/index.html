@@ -182,6 +182,7 @@ function drop(ev) {
     }
 }
 
+
 function isValidMove(sourceSquare, targetSquare, sourcePiece) {
     switch (sourcePiece) {
         case "&#9814;": // white knight
@@ -228,23 +229,46 @@ function isValidKnightMove(currentSquare, targetSquare) {
 }
 
 function isValidBishopMove(sourceSquare, targetSquare) {
-    // Add logic for bishop's move here
+    let sourceRow = sourceSquare[1];
+    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+    let targetRow = targetSquare[1];
+    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
+    // Check if the move is diagonal
+    return Math.abs(sourceRow - targetRow) === Math.abs(sourceCol - targetCol);
 }
 
 function isValidKingMove(sourceSquare, targetSquare) {
-    // Add logic for king's move here
+    let sourceRow = sourceSquare[1];
+    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+    let targetRow = targetSquare[1];
+    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
+    // Check if the move is not more than one square in any direction
+    return Math.abs(sourceRow - targetRow) <= 1 && Math.abs(sourceCol - targetCol) <= 1;
 }
 
 function isValidQueenMove(sourceSquare, targetSquare) {
-    // Add logic for queen's move here
+    let sourceRow = sourceSquare[1];
+    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+    let targetRow = targetSquare[1];
+    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
+    // Check if the move is either diagonal or along a row or column
+    return Math.abs(sourceRow - targetRow) === Math.abs(sourceCol - targetCol) ||
+           sourceRow === targetRow ||
+           sourceCol === targetCol;
 }
 
 function isValidRookMove(sourceSquare, targetSquare) {
-    // Add logic for rook's move here
+    let sourceRow = sourceSquare[1];
+    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+    let targetRow = targetSquare[1];
+    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
+    // Check if the move is along a row or column
+    return sourceRow === targetRow ||
+           sourceCol === targetCol;
 }
 
 function isValidPawnMove(currentSquare, targetSquare) {
