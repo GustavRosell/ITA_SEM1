@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Flot grafik</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <svg id="grafik" width="2000" height="2000"></svg>
+
+  <script>
+    // I dette script-tag skal du skrive din egen JavaScript-kode!
+    let offsetX = 0;
+    let offsetY = 0;
+    let offsetR = 0;
+   
+    // opg 8.1)
+    for (let i = 0; i < 4; i++) {
+      offsetX = 50;
+      offsetY = 50;
+      offsetR = -20 * i;
+      drawCircle(offsetX + 150, offsetY + 150, offsetR + 150, "lightblue");
+    }
+
+    // opg 8.2)
+    for (let i = 0; i < 9; i++) {
+      offsetR = 5 * i;
+      offsetY = 350
+      offsetX = 50 * i;
+      drawCircle(offsetX + 50, offsetY + 150, offsetR + 5, "pink");
+    }
+    
+  </script>
+</body>
+
+</html>

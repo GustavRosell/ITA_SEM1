@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Flot grafik</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <svg id="grafik" width="2000" height="2000"></svg>
+
+  <script>
+    // I dette script-tag skal du skrive din egen JavaScript-kode!
+
+    offsetX = 0;
+    offsetY = 0;
+
+
+    for (let i = 0; i < 4; i++) {
+      offsetY = 400 * i;
+      drawCircle(offsetX + 250, offsetY + 250, 150, "transparent");
+      drawCircle(offsetX + 200, offsetY + 200, 15, "transparent");
+      drawCircle(offsetX + 300, offsetY + 200, 15, "transparent");
+      drawLine(offsetX + 180, offsetY + 300, offsetX + 320, offsetY + 300, "black")
+      drawLine(offsetX + 150, offsetY + 100, offsetX + 350, offsetY + 100, "black")
+      drawBox(offsetX + 210, offsetY + 20, 80, 80, "black");
+    }
+
+  </script>
+</body>
+</html>
