@@ -176,7 +176,6 @@ function drop(ev) {
     ev.preventDefault();
     var sourceSquare = ev.dataTransfer.getData("text");
     var sourcePiece = document.getElementById(sourceSquare).innerHTML;
-    var targetSquare = ev.target.id;
     if (isValidMove(sourceSquare, targetSquare, sourcePiece)) {
         ev.target.innerHTML = sourcePiece;
         document.getElementById(sourceSquare).innerHTML = "";
