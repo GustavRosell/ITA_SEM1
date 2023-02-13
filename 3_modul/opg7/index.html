@@ -17,7 +17,18 @@
     offsetY = 0;
 
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 2; i++) {
+      offsetY = 400 * i;
+      drawCircle(offsetX + 250, offsetY + 250, 150, "transparent");
+      drawCircle(offsetX + 200, offsetY + 200, 15, "transparent");
+      drawCircle(offsetX + 300, offsetY + 200, 15, "transparent");
+      drawLine(offsetX + 180, offsetY + 300, offsetX + 320, offsetY + 300, "black")
+      drawLine(offsetX + 150, offsetY + 100, offsetX + 350, offsetY + 100, "black")
+      drawBox(offsetX + 210, offsetY + 20, 80, 80, "black");
+    }
+    
+    for (let i = 0; i < 2; i++) {
+      offsetX = 350;
       offsetY = 400 * i;
       drawCircle(offsetX + 250, offsetY + 250, 150, "transparent");
       drawCircle(offsetX + 200, offsetY + 200, 15, "transparent");
@@ -29,4 +40,5 @@
 
   </script>
 </body>
+
 </html>
