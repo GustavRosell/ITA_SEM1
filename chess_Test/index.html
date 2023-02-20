@@ -165,141 +165,142 @@
         }
 
         function allowDrop(ev) {
-    ev.preventDefault();
-}
+            ev.preventDefault();
+        }
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
 
-function drop(ev) {
-    ev.preventDefault();
-    var sourceSquare = ev.dataTransfer.getData("text");
-    var sourcePiece = document.getElementById(sourceSquare).innerHTML;
-    if (isValidMove(sourceSquare, targetSquare, sourcePiece)) {
-        ev.target.innerHTML = sourcePiece;
-        document.getElementById(sourceSquare).innerHTML = "";
-    }
-}
+        function drop(ev) {
+            ev.preventDefault();
+            var sourceSquare = ev.dataTransfer.getData("text");
+            var sourcePiece = document.getElementById(sourceSquare).innerHTML;
+            if (isValidMove(sourceSquare, targetSquare, sourcePiece)) {
+                ev.target.innerHTML = sourcePiece;
+                document.getElementById(sourceSquare).innerHTML = "";
+            }
+        }
 
 
-function isValidMove(sourceSquare, targetSquare, sourcePiece) {
-    switch (sourcePiece) {
-        case "&#9814;": // white knight
-            return isValidKnightMove(sourceSquare, targetSquare);
-        case "&#9816;": // white bishop
-            return isValidBishopMove(sourceSquare, targetSquare);
-        case "&#9815;": // white rook
-            return isValidRookMove(sourceSquare, targetSquare);
-        case "&#9813;": // white queen
-            return isValidQueenMove(sourceSquare, targetSquare);
-        case "&#9812;": // white king
-            return isValidKingMove(sourceSquare, targetSquare);
-        case "&#9817;": // white pawn
-            return isValidPawnMove(sourceSquare, targetSquare);
-        case "&#9823;": // black knight
-            return isValidKnightMove(sourceSquare, targetSquare);
-        case "&#9821;": // black bishop
-            return isValidBishopMove(sourceSquare, targetSquare);
-        case "&#9822;": // black rook
-            return isValidRookMove(sourceSquare, targetSquare);
-        case "&#9820;": // black queen
-            return isValidQueenMove(sourceSquare, targetSquare);
-        case "&#9818;": // black king
-            return isValidKingMove(sourceSquare, targetSquare);
-        case "&#9819;": // black pawn
-            return isValidPawnMove(sourceSquare, targetSquare);
-    }
-}
+        function isValidMove(sourceSquare, targetSquare, sourcePiece) {
+            switch (sourcePiece) {
+                case "&#9814;": // white knight
+                    return isValidKnightMove(sourceSquare, targetSquare);
+                case "&#9816;": // white bishop
+                    return isValidBishopMove(sourceSquare, targetSquare);
+                case "&#9815;": // white rook
+                    return isValidRookMove(sourceSquare, targetSquare);
+                case "&#9813;": // white queen
+                    return isValidQueenMove(sourceSquare, targetSquare);
+                case "&#9812;": // white king
+                    return isValidKingMove(sourceSquare, targetSquare);
+                case "&#9817;": // white pawn
+                    return isValidPawnMove(sourceSquare, targetSquare);
+                case "&#9823;": // black knight
+                    return isValidKnightMove(sourceSquare, targetSquare);
+                case "&#9821;": // black bishop
+                    return isValidBishopMove(sourceSquare, targetSquare);
+                case "&#9822;": // black rook
+                    return isValidRookMove(sourceSquare, targetSquare);
+                case "&#9820;": // black queen
+                    return isValidQueenMove(sourceSquare, targetSquare);
+                case "&#9818;": // black king
+                    return isValidKingMove(sourceSquare, targetSquare);
+                case "&#9819;": // black pawn
+                    return isValidPawnMove(sourceSquare, targetSquare);
+            }
+        }
 
-function isValidKnightMove(currentSquare, targetSquare) {
-    let currentRow = currentSquare[0];
-    let currentCol = currentSquare[1];
-    let targetRow = targetSquare[0];
-    let targetCol = targetSquare[1];
+        function isValidKnightMove(currentSquare, targetSquare) {
+            let currentRow = currentSquare[0];
+            let currentCol = currentSquare[1];
+            let targetRow = targetSquare[0];
+            let targetCol = targetSquare[1];
 
-    let rowDiff = Math.abs(currentRow - targetRow);
-    let colDiff = Math.abs(currentCol - targetCol);
+            let rowDiff = Math.abs(currentRow - targetRow);
+            let colDiff = Math.abs(currentCol - targetCol);
 
-    if ((rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2)) {
-        return true;
-    }
+            if ((rowDiff === 2 && colDiff === 1) || (rowDiff === 1 && colDiff === 2)) {
+                return true;
+            }
 
-    return false;
-}
+            return false;
+        }
 
-function isValidBishopMove(sourceSquare, targetSquare) {
-    let sourceRow = sourceSquare[1];
-    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
-    let targetRow = targetSquare[1];
-    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+        function isValidBishopMove(sourceSquare, targetSquare) {
+            let sourceRow = sourceSquare[1];
+            let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+            let targetRow = targetSquare[1];
+            let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
-    // Check if the move is diagonal
-    return Math.abs(sourceRow - targetRow) === Math.abs(sourceCol - targetCol);
-}
+            // Check if the move is diagonal
+            return Math.abs(sourceRow - targetRow) === Math.abs(sourceCol - targetCol);
+        }
 
-function isValidKingMove(sourceSquare, targetSquare) {
-    let sourceRow = sourceSquare[1];
-    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
-    let targetRow = targetSquare[1];
-    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+        function isValidKingMove(sourceSquare, targetSquare) {
+            let sourceRow = sourceSquare[1];
+            let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+            let targetRow = targetSquare[1];
+            let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
-    // Check if the move is not more than one square in any direction
-    return Math.abs(sourceRow - targetRow) <= 1 && Math.abs(sourceCol - targetCol) <= 1;
-}
+            // Check if the move is not more than one square in any direction
+            return Math.abs(sourceRow - targetRow) <= 1 && Math.abs(sourceCol - targetCol) <= 1;
+        }
 
-function isValidQueenMove(sourceSquare, targetSquare) {
-    let sourceRow = sourceSquare[1];
-    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
-    let targetRow = targetSquare[1];
-    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+        function isValidQueenMove(sourceSquare, targetSquare) {
+            let sourceRow = sourceSquare[1];
+            let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+            let targetRow = targetSquare[1];
+            let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
-    // Check if the move is either diagonal or along a row or column
-    return Math.abs(sourceRow - targetRow) === Math.abs(sourceCol - targetCol) ||
-           sourceRow === targetRow ||
-           sourceCol === targetCol;
-}
+            // Check if the move is either diagonal or along a row or column
+            return Math.abs(sourceRow - targetRow) === Math.abs(sourceCol - targetCol) ||
+                sourceRow === targetRow ||
+                sourceCol === targetCol;
+        }
 
-function isValidRookMove(sourceSquare, targetSquare) {
-    let sourceRow = sourceSquare[1];
-    let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
-    let targetRow = targetSquare[1];
-    let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+        function isValidRookMove(sourceSquare, targetSquare) {
+            let sourceRow = sourceSquare[1];
+            let sourceCol = sourceSquare.charCodeAt(0) - 'a'.charCodeAt(0);
+            let targetRow = targetSquare[1];
+            let targetCol = targetSquare.charCodeAt(0) - 'a'.charCodeAt(0);
 
-    // Check if the move is along a row or column
-    return sourceRow === targetRow ||
-           sourceCol === targetCol;
-}
+            // Check if the move is along a row or column
+            return sourceRow === targetRow ||
+                sourceCol === targetCol;
+        }
 
-function isValidPawnMove(currentSquare, targetSquare) {
-    let currRow = currentSquare[1];
-    let currCol = currentSquare.charCodeAt(0) - 97;
-    let targetRow = targetSquare[1];
-    let targetCol = targetSquare.charCodeAt(0) - 97;
+        function isValidPawnMove(currentSquare, targetSquare) {
+            let currRow = currentSquare[1];
+            let currCol = currentSquare.charCodeAt(0) - 97;
+            let targetRow = targetSquare[1];
+            let targetCol = targetSquare.charCodeAt(0) - 97;
 
-    // Check if the move is straight forward
-    if (currCol === targetCol && targetRow - currRow === 1) {
-        return true;
-    }
+            // Check if the move is straight forward
+            if (currCol === targetCol && targetRow - currRow === 1) {
+                return true;
+            }
 
-    // Check if the move is diagonally forward (to capture a piece)
-    if (Math.abs(currCol - targetCol) === 1 && targetRow - currRow === 1) {
-        return true;
-    }
+            // Check if the move is diagonally forward (to capture a piece)
+            if (Math.abs(currCol - targetCol) === 1 && targetRow - currRow === 1) {
+                return true;
+            }
 
-    // Check if the pawn is moving two squares forward from its starting position
-    if (currRow === 2 && targetRow - currRow === 2 && currCol === targetCol) {
-        return true;
-    }
+            // Check if the pawn is moving two squares forward from its starting position
+            if (currRow === 2 && targetRow - currRow === 2 && currCol === targetCol) {
+                return true;
+            }
 
-    // Check if the pawn is moving two squares forward from its starting position
-    if (currRow === 7 && targetRow - currRow === -2 && currCol === targetCol) {
-        return true;
-    }
+            // Check if the pawn is moving two squares forward from its starting position
+            if (currRow === 7 && targetRow - currRow === -2 && currCol === targetCol) {
+                return true;
+            }
 
-    return false;
-}
+            return false;
+        }
 
     </script>
 </body>
+
 </html>
