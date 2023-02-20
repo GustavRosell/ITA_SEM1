@@ -1,5 +1,6 @@
-
-console.log("Opgave 3.1; print dette system: med et dobbelt for-loop\n");
+console.log("\n-----------------------------------------")
+console.log("Opgave 3.1; print dette system: med et dobbelt for-loop");
+console.log("----------------------------------------------------------\n");
 
 for (let i = 0; i < 10; i++) {
     let output = "";
@@ -21,7 +22,9 @@ for (let i = 0; i < 10; i++) {
 } 
 */
 
-console.log("\nOpgave 3.2; print dette system: med et dobbelt for-loop\n");
+console.log("\n----------------------------------------------------------");
+console.log("Opgave 3.2; print dette system: med et dobbelt for-loop");
+console.log("----------------------------------------------------------\n");
 
 for (let i = 0; i < 10; i++) {
     let output = "";
@@ -31,7 +34,9 @@ for (let i = 0; i < 10; i++) {
     console.log(output);
 }
 
-console.log("\nOpgave 3.3; print dette system: med et dobbelt for-loop\n");
+console.log("\n----------------------------------------------------------");
+console.log("Opgave 3.3; print dette system: med et dobbelt for-loop");
+console.log("----------------------------------------------------------\n");
 
 for (let i = 0; i < 10; i++) {
     let output = "";
@@ -43,3 +48,5 @@ for (let i = 0; i < 10; i++) {
     }
     console.log(output);
 }
+
+console.log("\n----------------------------------------------------------\n");

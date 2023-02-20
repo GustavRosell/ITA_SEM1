@@ -1,3 +1,7 @@
+console.log("\n----------------------------------------------------------");
+console.log("Opgave 7;");
+console.log("----------------------------------------------------------\n");
+
 let tekst = process.argv[2]; // Input til programmet
 
 if (tekst === "Banankage") {
