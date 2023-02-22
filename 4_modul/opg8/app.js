@@ -47,3 +47,14 @@ else {
     console.log("Forbudt");
 }
 console.log("\n----------------------------------------------------------\n");
+
+console.log("\nOpgave 4: På en anden måde (Skrevet ud)\n");
+/* let tekst4 = process.argv[2];
+if (tekst4.includes("svin") || tekst4.includes("hundehovede") || tekst4.includes("skidespræller") || tekst4.includes("skiderik") || tekst4.includes("socialdemokrat")) {
+    console.log("forbudt")
+} else {
+    console.log("godkendt")
+}
+ */
+
+// ELLER: 
