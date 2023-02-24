@@ -6,3 +6,5 @@ IT-Arkitektur - EAA - 1. Semester
 * Hvis du har brug for hjælp eller har spørgsmål til opgaverne, så hjælper jeg gerne.
 
 * Hvis du finder fejl ift. en opgave, sig gerne til så jeg kan rette det.
+
+siuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
