@@ -1,0 +1,14 @@
+Jeopardy-skabelonen består af tre filer:index.html, d3.js og JEOPARDY_QUESTIONS.json. Prøv at teste ved at åbne index.html gennem live-server.
+
+1. Hvad vises der på siden?
+    - På siden vises Jeopardy 
+    1. spg. 442, 
+    2. kategori(LOST IN SPACE)
+    3. spørgsmål ('In 1992 Space Shuttle astronauts delivered ashes of this "Star Trek" creator into the final frontier')
+    4. svar (Gene Roddenberry)
+2. Hvor kommer data på siden fra?
+    - Fra .json filen, som bliver kaldt gennem javascript funktionenerne inde i html filen 
+3. Hvad kan du se i browserens “konsol” når du åbner siden?
+    - Jeg kan intet se i konsollen... får bare en masse fejl...
+4. Hvilken relevant data findes der på hvert “spørgsmål” i datasættet?
+    - Der findes kategori, spørgsmål og svar

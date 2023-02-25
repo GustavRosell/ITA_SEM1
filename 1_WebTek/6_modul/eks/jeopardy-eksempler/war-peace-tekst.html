@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Jeopardy data</title>
+  <script src="d3.js"></script>
+</head>
+
+<body>
+  <script>
+    // Loader jeopardy-data og gør det tilgængeligt
+    d3.json("JEOPARDY_QUESTIONS.json").then(function (data) {
+      const jeopardy = data;
+
+      // Fire datapunkter i et array. Vi starter med at sætte dem alle til '0'.
+      let opsamling = [0, 0, 0, 0];
+
+      // Forklaring:
+      // Vi løber alle spørgsmål igennem med et for...of loop.
+      // For hvert spørgsmål, tjekker vi om en af fire betingelser er opfyldt.
+      // Hver af de fire betingelser tælles op på hver af de fire pladser i arrayet.
+      // Resultat: Vi har lavet en optælling på antallet af forekomster på de fire ord vi leder efter.
+      // Dvs. antaller af kategorier hvor hver af de fire ord forekommer. 
+      for (let question of data) {
+        if (question.category.toLowerCase().includes("war")) {
+          opsamling[0] = opsamling[0] + 1;
+        } 
+        if (question.category.toLowerCase().includes("peace")) {
+          opsamling[1] = opsamling[1] + 1;
+        } 
+        if (question.category.toLowerCase().includes("love")) {
+          opsamling[2] = opsamling[2] + 1;
+        } 
+        if (question.category.toLowerCase().includes("hate")) {
+          opsamling[3] = opsamling[3] + 1;
+        }
+      }
+
+      d3.select("body").append("h2").text(`Antal gange hvert af følgende ord forekommer i en Jeopardy-kategori:`);
+      d3.select("body").append("p").text(`Ordet "war" forekommer ${opsamling[0]} gange.`);
+      d3.select("body").append("p").text(`Ordet "peace" forekommer ${opsamling[1]} gange.`);
+      d3.select("body").append("p").text(`Ordet "love" forekommer ${opsamling[2]} gange.`);
+      d3.select("body").append("p").text(`Ordet "hate" forekommer ${opsamling[3]} gange.`);
+
+      console.log("opsamling", opsamling);
+    });
+  </script>
+
+</body>
+</html>

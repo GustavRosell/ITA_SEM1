@@ -1,0 +1,93 @@
+<!-- 
+7.2 Lav en variant hvor du i stedet kigger på ord fra selve spørgsmålene eller deres svar. 
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Jeopardy data</title>
+  <script src="d3.js"></script>
+</head>
+
+<body>
+  <script>
+    // Loader jeopardy-data og gør det tilgængeligt
+    d3.json("JEOPARDY_QUESTIONS.json").then(function (data) {
+      const jeopardy = data;
+
+      // Fire datapunkter i et array. Vi starter med at sætte dem alle til '0'.
+      let opsamling = [0, 0, 0, 0];
+
+      // Forklaring:
+      // Vi løber alle spørgsmål igennem med et for...of loop.
+      // For hvert spørgsmål, tjekker vi om en af fire betingelser er opfyldt.
+      // Hver af de fire betingelser tælles op på hver af de fire pladser i arrayet.
+      // Resultat: Vi har lavet en optælling på antallet af forekomster på de fire ord vi leder efter.
+      // Dvs. antaller af kategorier hvor hver af de fire ord forekommer. 
+      for (let question of data) {
+        if (question.category.toLowerCase().includes("mozart")) {
+          opsamling[0] = opsamling[0] + 1;
+        }
+        if (question.category.toLowerCase().includes("writer")) {
+          opsamling[1] = opsamling[1] + 1;
+        }
+        if (question.category.toLowerCase().includes("who")) {
+          opsamling[2] = opsamling[2] + 1;
+        }
+        if (question.category.toLowerCase().includes("hate")) {
+          opsamling[3] = opsamling[3] + 1;
+        }
+      }
+
+      d3.select("body").append("h2").text(`Antal gange hvert af følgende ord forekommer i en Jeopardy-kategori:`);
+      d3.select("body").append("p").text(`Ordet "mozart" forekommer ${opsamling[0]} gange.`);
+      d3.select("body").append("p").text(`Ordet "writer" forekommer ${opsamling[1]} gange.`);
+      d3.select("body").append("p").text(`Ordet "who" forekommer ${opsamling[2]} gange.`);
+      d3.select("body").append("p").text(`Ordet "hate" forekommer ${opsamling[3]} gange.`);
+
+      console.log("opsamling", opsamling);
+
+      // Lav SVG-elementet
+      // Width og height
+      const w = 100;
+      const h = 500; 
+      const barPadding = 5; // Bruges til at lave afstand imellem søjler
+
+      const svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      // Lav en barchart med data fra arrayet opsamling
+      svg.selectAll("rect")
+      .data(opsamling)
+      .enter()
+      .append("rect")
+      // 'd' er datapunktet
+      // 'i' er index i datasættet
+      .attr("x", function (d, i) {
+        // Søjlerne spredes jævnt ud over 'w'
+        return i * (w / opsamling.length);
+      })
+      .attr("y", function (d) {
+        // 'y' er position for søjlens øverste kant
+        // Husk, y-aksen vender på hovedet!
+        return h - (d * 4);
+      })
+      // Bredden er fast - og afhænger af 'w' og antallet af datapunkter
+      .attr("width", w / opsamling.length - barPadding) // Padding skaber luft imellem søjler
+      // Højden er datapunktet * 4. 
+      .attr("height", function (d) {
+        return d * 10;
+      })
+      // Alle søjler er farvet 'teal'
+      .attr("fill", "teal");
+    });
+  </script>
+
+</body>
+
+</html>

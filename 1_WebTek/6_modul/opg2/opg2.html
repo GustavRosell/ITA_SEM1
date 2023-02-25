@@ -1,0 +1,47 @@
+<!-- 
+1.  Erstat datasættet med følgende i stedet for: 
+    const dataset = [ "peach", "pineapple", "passion", "papaya", "pomegranate" ]; 
+2. Lav ændringer i udskriften så teksten i stedet siger noget i stil med “ordet frugt har en længde på længde”.
+3. Lav ændringer i stylingen så teksten hvor frugten er mindst 
+    8 tegn farves blå og teksten til frugter på under 8 tegn farves røde.
+4.Tjek at resultatet ser korrekt ud. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>D3-eksempel</title>
+    <script type="text/javascript" src="d3.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const dataset = ["peach", "pineapple", "passion", "papaya", "pomegranate"];
+
+        d3.select("body").selectAll("p")
+            .data(dataset)
+            .enter()
+            .append("p")
+            .text(function (d) {
+                // Datapunktet indgår i den tekst der indsættes - to steder!
+                return `Ordet ${d} har en længe på ${d.length}.`;
+            })
+            .style("color", function (d) {
+                // Denne funktion bruges til at farve teksten afhængigt af datapunktet 'd'
+                /*    if (d > 15) {
+                       return "red";
+                   } else {
+                       return "black";
+                   } */
+                   
+                if (d.length >= 8) {
+                    return "blue";
+                } else {
+                    return "red";
+                }
+                
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!-- I folderen modul06/jeopardy-eksempler/ er der et eksempel på optælling af hvor mange gange fire forskellige ord optræder i Jeopardy-kategorier. Du kan se koden i war-peace-tekst.html. Der anvendes et “for loop” til opsamlingen, og de fire tal tælles op i et array. Eksemplet viser hvordan tallene kan vises på siden.
+
+Din opgave er at lave en kopi af eksemplet, og udvidet det så tallene vises som en barchart. Du kan bruge et andet eksempel, barchart.html fra folderen eksempler til inspiration. Koden fra de to eksempler skal flettes sammen og tilpasses for at løse opgaven.
+-->
+
+<!-- OBS: ift. størrelse på chart
+Der er meget stor forskel antallet af gange ordene henholdvis war og hate forekommer,
+og har derfor valgt at højde på 500px for nu, man dog ændre den markant og se forskellen.
+Jeg ved sgu ikke lige hvordan man ville gøre det anderledes for nu, gider ikke læse 100 sider i bogen -->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Jeopardy data</title>
+  <script src="d3.js"></script>
+</head>
+
+<body>
+  <script>
+    // Loader jeopardy-data og gør det tilgængeligt
+    d3.json("JEOPARDY_QUESTIONS.json").then(function (data) {
+      const jeopardy = data;
+
+      // Fire datapunkter i et array. Vi starter med at sætte dem alle til '0'.
+      let opsamling = [0, 0, 0, 0];
+
+      // Forklaring:
+      // Vi løber alle spørgsmål igennem med et for...of loop.
+      // For hvert spørgsmål, tjekker vi om en af fire betingelser er opfyldt.
+      // Hver af de fire betingelser tælles op på hver af de fire pladser i arrayet.
+      // Resultat: Vi har lavet en optælling på antallet af forekomster på de fire ord vi leder efter.
+      // Dvs. antaller af kategorier hvor hver af de fire ord forekommer. 
+      for (let question of data) {
+        if (question.category.toLowerCase().includes("war")) {
+          opsamling[0] = opsamling[0] + 1;
+        }
+        if (question.category.toLowerCase().includes("peace")) {
+          opsamling[1] = opsamling[1] + 1;
+        }
+        if (question.category.toLowerCase().includes("love")) {
+          opsamling[2] = opsamling[2] + 1;
+        }
+        if (question.category.toLowerCase().includes("hate")) {
+          opsamling[3] = opsamling[3] + 1;
+        }
+      }
+
+      d3.select("body").append("h2").text(`Antal gange hvert af følgende ord forekommer i en Jeopardy-kategori:`);
+      d3.select("body").append("p").text(`Ordet "war" forekommer ${opsamling[0]} gange.`);
+      d3.select("body").append("p").text(`Ordet "peace" forekommer ${opsamling[1]} gange.`);
+      d3.select("body").append("p").text(`Ordet "love" forekommer ${opsamling[2]} gange.`);
+      d3.select("body").append("p").text(`Ordet "hate" forekommer ${opsamling[3]} gange.`);
+
+      console.log("opsamling", opsamling);
+
+      // Lav SVG-elementet
+      // Width og height
+      const w = 100;
+      const h = 500; 
+      const barPadding = 5; // Bruges til at lave afstand imellem søjlerne
+
+      const svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      // Lav en barchart med data fra arrayet opsamling
+      svg.selectAll("rect")
+      .data(opsamling)
+      .enter()
+      .append("rect")
+      // 'd' er datapunktet
+      // 'i' er index i datasættet
+      .attr("x", function (d, i) {
+        // Søjlerne spredes jævnt ud over 'w'
+        return i * (w / opsamling.length);
+      })
+      .attr("y", function (d) {
+        // 'y' er position for søjlens øverste kant
+        // Husk, y-aksen vender på hovedet!
+        return h - (d * 4);
+      })
+      // Bredden er fast - og afhænger af 'w' og antallet af datapunkter
+      .attr("width", w / opsamling.length - barPadding) // Padding skaber luft imellem søjler
+      // Højden er datapunktet * 4. 
+      .attr("height", function (d) {
+        return (d * 4);
+      })
+      // Alle søjler er farvet 'teal'
+      .attr("fill", "teal");
+    });
+  </script>
+
+</body>
+
+</html>

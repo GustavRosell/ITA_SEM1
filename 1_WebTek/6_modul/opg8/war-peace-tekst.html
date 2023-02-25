@@ -1,0 +1,85 @@
+<!-- 
+  Disse spørgsmål besvares nemmest ved at skrive noget JavaScript-kode der giver dig svaret. 
+  Du behøver ikke lave en egentlig visualisering der viser svarene - det er fint bare at printe svarene, fx med console.log.
+
+Svar på følgende spørgsmål:
+
+1. Præcist hvor mange spørgsmål er der i alt?
+2. Hvad er det længste spørgsmål i datasættet?
+3. Hvor mange spørgsmål indeholder ordet “STRAWBERRY”?
+4. Hvilket spørgsmål har “HULK” som svar?
+5. Hvilke kategorier finder du i “show number” 4242?
+6. Hvilke spørgsmål finder du i udsendelsen fra “2008-10-13”? -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Jeopardy data</title>
+  <script src="d3.js"></script>
+</head>
+
+<body>
+  <script>
+     // Loader jeopardy-data og gør det tilgængeligt
+     d3.json("JEOPARDY_QUESTIONS.json").then(function (data) {
+      const jeopardy = data;
+
+      // 1. Præcist hvor mange spørgsmål er der i alt?
+      console.log("1. Præcist hvor mange spørgsmål er der i alt?");
+      console.log(jeopardy.length);
+
+      // 2. Hvad er det længste spørgsmål i datasættet?
+      console.log("2. Hvad er det længste spørgsom i datasættet?");
+      let longestQuestion = "";
+      for (let question of jeopardy) {
+        if (question.question.length > longestQuestion.length) {
+          longestQuestion = question.question;
+        }
+      }
+      console.log(longestQuestion);
+
+      // 3. Hvor mange spørgsmål indeholder ordet “STRAWBERRY”?
+      console.log("3. Hvor mange spørgsmål indeholder ordet “STRAWBERRY”?");
+      let strawberryCount = 0;
+      for (let question of jeopardy) {
+        if (question.question.toLowerCase().includes("strawberry")) {
+          strawberryCount++;
+        }
+      }
+      console.log(strawberryCount);
+
+      // 4. Hvilket spørgsmål har “HULK” som svar?
+      console.log("4. Hvilket spørgsmål har “HULK” som svar?");
+      let hulkQuestion = "";
+      for (let question of jeopardy) {
+        if (question.answer.toLowerCase().includes("hulk")) {
+          hulkQuestion = question.question;
+        }
+      }
+      console.log(hulkQuestion);
+
+      // 5. Hvilke kategorier finder du i “show number” 4242?
+      console.log("5. Hvilke kategorier finder du i “show number” 4242?");
+      let categories = [];
+      for (let question of jeopardy) {
+        if (question.show_number == 4242) {
+          categories.push(question.category);
+        }
+      }
+      console.log(categories);
+
+      // 6. Hvilke spørgsmål finder du i udsendelsen fra “2008-10-13”?
+      console.log("6. Hvilke spørgsmål finder du i udsendelsen fra “2008-10-13”?");
+      let questions = [];
+      for (let question of jeopardy) {
+        if (question.air_date == "2008-10-13") {
+          questions.push(question.question);
+        }
+      }
+      console.log(questions);
+    });
+  </script>
+
+</body>
+</html>

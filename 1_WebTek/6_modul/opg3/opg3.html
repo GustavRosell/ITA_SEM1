@@ -1,0 +1,72 @@
+<!-- 
+1. Lav ændringer i datasættet så der nu er flere værdier der ligger over 50.
+    - Tilføjes ved kommentar: Opgave 1.
+2. Lav ændringer til koden så søjler der svarer til værdier over 50 ikke bliver “klippet over”.
+    - Tilføjes ved kommentar: Opgave 2.
+3. Tilføje nogle ekstra datapunkter og observer hvad der gør ved bredden af hver søjle.
+    - Bredden af søjlen bliver smallere jo flere datapunkter der er.
+    - De tilføjede er slettet sidenhen de ikke er en del af opgaven.
+4. Gør søjlerne bredere uden at ændre på antallet af datapunkter.
+    - Tilføjes ved kommentar: Opgave 4.
+5. Prøv at ændre på “barPadding” og observer effekten af dette.
+    - Tilføjes ved kommentar: Opgave 5. 
+    - 
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>D3-eksempel</title>
+    <script type="text/javascript" src="d3.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Width og height
+        const w = 500; // Bredden på SVG-elementet // Opgave 4.
+        const h = 250; // Højden på SVG-elementet  // Opgave 2.
+        const barPadding = 5; // Bruges til at lave afstand imellem søjler // Opgave 5.
+
+        // Selve datasættet
+        let dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+            11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]; // Opgave 1.
+
+        // Lav SVG-elementet
+        const svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        // Lave barchart (søjlediagram)
+        svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            // 'd' er datapunktet
+            // 'i' er index i datasættet
+            .attr("x", function (d, i) {
+                // Søjlerne spredes jævnt ud over 'w'
+                return i * (w / dataset.length);
+
+            })
+            // Y-koordinaten er højden af SVG-elementet minus datapunktet * 4
+            .attr("y", function (d) {
+                return h - (d * 4);
+            })
+
+            // Bredden er fast - og afhænger af 'w' og antallet af datapunkter
+            .attr("width", w / dataset.length - barPadding) // Padding skaber luft imellem søjler
+            // Højden er datapunktet * 4. 
+            .attr("height", function (d) {
+                return d * 4;
+            })
+            // Alle søjler er farvet 'teal'
+            // ændrer farven på søjlerne over 50 til "orange", bare fordi jeg er sej.
+            .attr("fill", function (d) {
+                return d > 50 ? "orange" : "teal";
+            });
+    </script>
+</body>
+
+</html>
