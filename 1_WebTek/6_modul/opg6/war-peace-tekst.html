@@ -61,6 +61,9 @@ Jeg ved sgu ikke lige hvordan man ville gøre det anderledes for nu, gider ikke 
       const w = 100;
       const h = 500; 
       const barPadding = 5; // Bruges til at lave afstand imellem søjlerne
+      const scale = d3.scaleLinear()
+        .domain([0, d3.max(opsamling)])
+        .range([0, h]);
 
       const svg = d3.select("body")
         .append("svg")
@@ -69,26 +72,14 @@ Jeg ved sgu ikke lige hvordan man ville gøre det anderledes for nu, gider ikke 
 
       // Lav en barchart med data fra arrayet opsamling
       svg.selectAll("rect")
-      .data(opsamling)
-      .enter()
-      .append("rect")
-      // 'd' er datapunktet
-      // 'i' er index i datasættet
-      .attr("x", function (d, i) {
-        // Søjlerne spredes jævnt ud over 'w'
-        return i * (w / opsamling.length);
-      })
-      .attr("y", function (d) {
-        // 'y' er position for søjlens øverste kant
-        // Husk, y-aksen vender på hovedet!
-        return h - (d * 4);
-      })
-      // Bredden er fast - og afhænger af 'w' og antallet af datapunkter
-      .attr("width", w / opsamling.length - barPadding) // Padding skaber luft imellem søjler
-      // Højden er datapunktet * 4. 
-      .attr("height", function (d) {
-        return (d * 4);
-      })
+        .data(opsamling)
+        .enter()
+        .append("rect")
+        
+        .attr("x", (d, i) => i * (w / opsamling.length)) // Placerer søjlerne ved siden af hinanden
+        .attr("y", (d) => h - scale(d)) // Placerer søjlerne fra bunden af SVG-elementet
+        .attr("width", w / opsamling.length - barPadding) // Søjlerne er 20px bred
+        .attr("height", (d) => scale(d))
       // Alle søjler er farvet 'teal'
       .attr("fill", "teal");
     });

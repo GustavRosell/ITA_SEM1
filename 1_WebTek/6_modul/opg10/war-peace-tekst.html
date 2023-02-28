@@ -20,29 +20,33 @@
   <script>
     let jeopardyData;
     const w = 100; // Width på barchart
-    const h = 3000; // Height på barchart
+    const h = 200; // Height på barchart
     const barPadding = 5; // Padding mellem barchart søjlerne
-
+    let svg;
+  
     // Loader jeopardy-data og gør det tilgængeligt
     d3.json("JEOPARDY_QUESTIONS.json").then(function (data) {
       jeopardyData = data;
     });
-
+  
     // Event listener for søg knappen
     const searchButton = document.getElementById("searchButton");
     searchButton.addEventListener("click", function () {
       const searchInput = document.getElementById("searchInput").value;
       const searchTerms = searchInput.trim().toLowerCase().split(/\s+/); // Splittter søgeordene og fjerner whitespace
-
-      // Reset resultContainer HTML
+  
+      // Reset resultContainer HTML og fjern SVG-elementet
       const resultContainer = document.getElementById("resultContainer");
       resultContainer.innerHTML = "";
-
+      if (svg) {
+        svg.remove();
+      }
+  
       // Optælling for hvert søgeord
       const termCounts = searchTerms.map(term => {
         return { term: term, count: 0 };
       });
-
+  
       // Optælling for hvert spørgsmål
       for (let question of jeopardyData) {
         for (let termCount of termCounts) {
@@ -51,7 +55,7 @@
           }
         }
       }
-
+  
       // Vis antal forekomster for hvert søgeord i resultContainer
       for (let termCount of termCounts) {
         const resultText = `Ordet "${termCount.term}" forekommer ${termCount.count} gange.`;
@@ -59,26 +63,30 @@
         resultP.innerText = resultText;
         resultContainer.appendChild(resultP);
       }
-
+  
+      const scale = d3.scaleLinear()
+        .domain([0, d3.max(termCounts , function(d) { return d.count; })])
+        .range([0, h]);
+  
       // Vis søjlediagram med optælling for hvert søgeord
-      const svg = d3.select("body")
+      svg = d3.select("body")
         .append("svg")
         .attr("width", w)
         .attr("height", h);
-
+  
       svg.selectAll("rect")
         .data(termCounts)
         .enter()
         .append("rect")
-        .attr("x", function (d, i) {
+        .attr("x", function(d, i) {
           return i * (w / termCounts.length);
         })
-        .attr("y", function (d) {
-          return h - (d.count * 4);
+        .attr("y", function(d) {
+          return h - scale(d.count);
         })
         .attr("width", w / termCounts.length - barPadding)
-        .attr("height", function (d) {
-          return (d.count * 4);
+        .attr("height", function(d) {
+          return scale(d.count);
         })
         .attr("fill", "teal");
     });
