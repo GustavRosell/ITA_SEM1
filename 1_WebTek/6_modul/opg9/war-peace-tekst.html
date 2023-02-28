@@ -24,11 +24,11 @@ ChatBot AI har lavet hele visualiseringen for mig, jeg forstår stadig ikk SVG o
 
       // 1. Præcist hvor mange spørgsmål er der i alt?
       console.log("1. Lav en optælling af hvor mange spørgsmål der er hvert år. Visualiser antallet som en barchart.");
-      let years = {};
+      let years = {}; // Objekt til at holde styr på antallet af spørgsmål hvert år
       for (let question of jeopardy) {
-        let year = question.air_date.substring(0, 4);
-        if (years[year] == undefined) {
-          years[year] = 1;
+        let year = question.air_date.substring(0, 4); // Hent årstal fra dato
+        if (years[year] == undefined) { // Hvis årstallet ikke findes i objektet, så opret det
+          years[year] = 1; // og sæt antallet til 1
         } else {
           years[year]++;
         }
@@ -75,11 +75,11 @@ ChatBot AI har lavet hele visualiseringen for mig, jeg forstår stadig ikk SVG o
       // 2. Lav en optælling og visualiseringer af hvor lange spørgsmålene er, opdelt i intervaller.
 
       console.log("2. Lav en optælling og visualiseringer af hvor lange spørgsmålene er, opdelt i intervaller.");
-      let questionLengths = {};
+      let questionLengths = {}; // Objekt til at holde styr på antallet af spørgsmål hvert år
       for (let question of jeopardy) {
-        let length = question.question.length;
-        if (questionLengths[length] == undefined) {
-          questionLengths[length] = 1;
+        let length = question.question.length; // Hent årstal fra dato
+        if (questionLengths[length] == undefined) { // Hvis årstallet ikke findes i objektet, så opret det
+          questionLengths[length] = 1; // og sæt antallet til 1
         } else {
           questionLengths[length]++;
         }
@@ -87,13 +87,13 @@ ChatBot AI har lavet hele visualiseringen for mig, jeg forstår stadig ikk SVG o
       console.log(questionLengths);
 
       // Opgave 2A: Opdel spørgsmålene i intervaller af 10 tegn og tæl antallet af spørgsmål i hver interval
-      let intervalLength = 10;
-      let intervals = {};
+      let intervalLength = 10; // Længden af hvert interval
+      let intervals = {}; // Objekt til at holde styr på antallet af spørgsmål i hvert interval
       for (let length in questionLengths) {
-        let count = questionLengths[length];
-        let interval = Math.floor(length / intervalLength) * intervalLength + 1;
-        if (intervals[interval] == undefined) {
-          intervals[interval] = count;
+        let count = questionLengths[length]; // Antallet af spørgsmål med denne længde
+        let interval = Math.floor(length / intervalLength) * intervalLength + 1; // Intervallet for spørgsmålene med denne længde
+        if (intervals[interval] == undefined) { // Hvis intervallet ikke findes i objektet, så opret det
+          intervals[interval] = count; // og sæt antallet til 1
         } else {
           intervals[interval] += count;
         }
@@ -104,7 +104,7 @@ ChatBot AI har lavet hele visualiseringen for mig, jeg forstår stadig ikk SVG o
       // Opret barchart
       const margin2 = { top: 10, right: 30, bottom: 30, left: 60 };
       const width2 = 1500 - margin2.left - margin2.right;
-      const height2 = 400 - margin2.top - margin2.bottom;
+      const height2 = 200 - margin2.top - margin2.bottom;
 
 
       const svg2 = d3.select("body").append("svg")
@@ -137,7 +137,7 @@ ChatBot AI har lavet hele visualiseringen for mig, jeg forstår stadig ikk SVG o
         .attr("x", d => x2(d[0]))
         .attr("y", d => y2(d[1]))
         .attr("width", x2.bandwidth())
-        .attr("height", d => height2 - y2(d[1]));
+        .attr("height", d => height2 - y2(d[1])) // Højden af baren er højden af diagrammet minus højden af baren
     });
   </script>
 
