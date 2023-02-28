@@ -1,15 +1,12 @@
 <!-- I folderen modul06/jeopardy-eksempler/ er der et eksempel på optælling af hvor mange gange fire forskellige ord optræder i Jeopardy-kategorier. Du kan se koden i war-peace-tekst.html. Der anvendes et “for loop” til opsamlingen, og de fire tal tælles op i et array. Eksemplet viser hvordan tallene kan vises på siden.
 
-Din opgave er at lave en kopi af eksemplet, og udvidet det så tallene vises som en barchart. Du kan bruge et andet eksempel, barchart.html fra folderen eksempler til inspiration. Koden fra de to eksempler skal flettes sammen og tilpasses for at løse opgaven.
+Din opgave er at lave en kopi af eksemplet, og udvidet det så tallene vises som en barchart. 
+Du kan bruge et andet eksempel, barchart.html fra folderen eksempler til inspiration. 
+Koden fra de to eksempler skal flettes sammen og tilpasses for at løse opgaven.
+
+OBS: ift. skalering: scaleLinear() er benyttet, som er en del af d3.js.
+dette gør, at søjlerne ikke 'klippes' af, når de bliver for lange.
 -->
-
-<!-- OBS: ift. størrelse på chart
-Der er meget stor forskel antallet af gange ordene henholdvis war og hate forekommer,
-og har derfor valgt at højde på 500px for nu, man dog ændre den markant og se forskellen.
-Jeg ved sgu ikke lige hvordan man ville gøre det anderledes for nu, gider ikke læse 100 sider i bogen -->
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -58,30 +55,57 @@ Jeg ved sgu ikke lige hvordan man ville gøre det anderledes for nu, gider ikke 
 
       // Lav SVG-elementet
       // Width og height
-      const w = 100;
-      const h = 500; 
+      const w = 100; 
+      const h = 200;
       const barPadding = 5; // Bruges til at lave afstand imellem søjlerne
-      const scale = d3.scaleLinear()
+      const scale = d3.scaleLinear() // Skalerer søjlerne
         .domain([0, d3.max(opsamling)])
-        .range([0, h]);
+        .range([0, h]); 
 
-      const svg = d3.select("body")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h);
+      const svg = d3.select("body") // Vælger body-elementet
+        .append("svg") // Tilføjer et svg-element til body-elementet
+        .attr("width", w) // SVG-elementet har samme størrelse som vores data
+        .attr("height", h); // SVG-elementet har samme størrelse som vores data
 
       // Lav en barchart med data fra arrayet opsamling
-      svg.selectAll("rect")
-        .data(opsamling)
-        .enter()
-        .append("rect")
-        
-        .attr("x", (d, i) => i * (w / opsamling.length)) // Placerer søjlerne ved siden af hinanden
-        .attr("y", (d) => h - scale(d)) // Placerer søjlerne fra bunden af SVG-elementet
-        .attr("width", w / opsamling.length - barPadding) // Søjlerne er 20px bred
-        .attr("height", (d) => scale(d))
-      // Alle søjler er farvet 'teal'
-      .attr("fill", "teal");
+      svg.selectAll("rect") // Vælger alle rect-elementer i svg-elementet
+        .data(opsamling) // Data fra arrayet opsamling
+        .enter() // Indsætter data i svg-elementet
+        .append("rect") // Tilføjer en søjle for hver datapunkt
+
+        .attr("x", (d, i) => i * (w / opsamling.length)) // Placerer søjlerne fra venstre af svg-elementet
+        .attr("y", (d) => h - scale(d)) // Placerer søjlerne fra bunden af svg-elementet
+        .attr("width", w / opsamling.length - barPadding) // Søjlerne får samme bredde
+        .attr("height", (d) => scale(d)) 
+
+        // Farver søjler fordi jeg keder mig
+        .attr("fill", function (d) {
+          if (d == 0) {
+            return "white";
+          } if (d < 100) {
+            return "black";
+          } if (d >= 100 && d <= 200) {
+            return "red";
+          } if (d > 200 && d <= 300) {
+            return "blue";
+          } if (d > 300 && d <= 400) {
+            return "green";
+          } if (d > 400 && d <= 500) {
+            return "yellow";
+          } if (d > 500 && d <= 600) {
+            return "orange";
+          } if (d > 600 && d <= 700) {
+            return "purple";
+          } if (d > 700 && d <= 800) {
+            return "pink";
+          } if (d > 800 && d <= 900) {
+            return "brown";
+          } if (d > 900 && d <= 1000) {
+            return "grey";
+          } else {
+            return "teal";
+          }
+        });
     });
   </script>
 

@@ -1,4 +1,4 @@
-<!-- 
+<!-- Opgave 3: 
 1. Lav ændringer i datasættet så der nu er flere værdier der ligger over 50.
     - Tilføjes ved kommentar: Opgave 1.
 2. Lav ændringer til koden så søjler der svarer til værdier over 50 ikke bliver “klippet over”.
@@ -10,9 +10,7 @@
     - Tilføjes ved kommentar: Opgave 4.
 5. Prøv at ændre på “barPadding” og observer effekten af dette.
     - Tilføjes ved kommentar: Opgave 5. 
-    - 
 -->
-
 <!DOCTYPE html>
 <html>
 
@@ -25,12 +23,11 @@
     <script type="text/javascript">
         // Width og height
         const w = 500; // Bredden på SVG-elementet // Opgave 4.
-        const h = 250; // Højden på SVG-elementet  // Opgave 2.
+        const h = 500; // Højden på SVG-elementet  // Opgave 2.
         const barPadding = 5; // Bruges til at lave afstand imellem søjler // Opgave 5.
 
         // Selve datasættet
-        let dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-            11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]; // Opgave 1.
+        let dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]; // Opgave 1.
 
         // Lav SVG-elementet
         const svg = d3.select("body")
@@ -62,9 +59,14 @@
                 return d * 4;
             })
             // Alle søjler er farvet 'teal'
-            // ændrer farven på søjlerne over 50 til "orange", bare fordi jeg er sej.
+            // ændrer farven på søjlerne over 50, bare fordi jeg er sej.
             .attr("fill", function (d) {
-                return d > 50 ? "orange" : "teal";
+                if (d > 50) {
+                    return "orange";
+                } else {
+                    return "tomato";
+                }
+                // return d > 50 ? "orange" : "teal";
             });
     </script>
 </body>
