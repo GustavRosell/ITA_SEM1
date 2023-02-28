@@ -1,7 +1,5 @@
-<!-- Opgave 7: Lav følgende varianter, hvor du bruger din løsning fra opgave 6 som skabelon.
-
+<!-- Opgave 7.1: Lav følgende varianter, hvor du bruger din løsning fra opgave 6 som skabelon.
 Lav en variant hvor du selv har valgt 5-10 ord fra datasættet du vil visualisere. Husk at skrive på selve siden hvilke ord der er valgt, så andre også kan forstå din visualisering blot ved at se resultatet.
-Lav en variant hvor du i stedet kigger på ord fra selve spørgsmålene eller deres svar. 
 -->
 
 <!DOCTYPE html>
@@ -108,8 +106,34 @@ Lav en variant hvor du i stedet kigger på ord fra selve spørgsmålene eller de
       .attr("height", function (d) {
         return d * 10;
       })
-      // Alle søjler er farvet 'teal'
-      .attr("fill", "teal");
+      // Farver søjler fordi jeg keder mig
+      .attr("fill", function (d) {
+          if (d == 0) {
+            return "white";
+          } if (d < 100) {
+            return "black";
+          } if (d >= 100 && d <= 200) {
+            return "tomato";
+          } if (d > 200 && d <= 300) {
+            return "blue";
+          } if (d > 300 && d <= 400) {
+            return "green";
+          } if (d > 400 && d <= 500) {
+            return "yellow";
+          } if (d > 500 && d <= 600) {
+            return "orange";
+          } if (d > 600 && d <= 700) {
+            return "purple";
+          } if (d > 700 && d <= 800) {
+            return "pink";
+          } if (d > 800 && d <= 900) {
+            return "brown";
+          } if (d > 900 && d <= 1000) {
+            return "grey";
+          } else {
+            return "teal";
+          }
+        });
     });
   </script>
 

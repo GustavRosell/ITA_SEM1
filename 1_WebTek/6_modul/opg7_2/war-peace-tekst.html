@@ -1,9 +1,6 @@
-<!-- 
-7.2 Lav en variant hvor du i stedet kigger på ord fra selve spørgsmålene eller deres svar. 
+<!-- Opgave 7.2: 
+Lav en variant hvor du i stedet kigger på ord fra selve spørgsmålene eller deres svar. 
 -->
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -27,17 +24,20 @@
       // Hver af de fire betingelser tælles op på hver af de fire pladser i arrayet.
       // Resultat: Vi har lavet en optælling på antallet af forekomster på de fire ord vi leder efter.
       // Dvs. antaller af kategorier hvor hver af de fire ord forekommer. 
+
+      // Jeg har ændret question.question til question.answer for at få ord fra svar på spørgsmålene:
+
       for (let question of data) {
-        if (question.category.toLowerCase().includes("mozart")) {
+        if (question.answer.toLowerCase().includes("mozart")) {
           opsamling[0] = opsamling[0] + 1;
         }
-        if (question.category.toLowerCase().includes("writer")) {
+        if (question.answer.toLowerCase().includes("writer")) {
           opsamling[1] = opsamling[1] + 1;
         }
-        if (question.category.toLowerCase().includes("who")) {
+        if (question.answer.toLowerCase().includes("who")) {
           opsamling[2] = opsamling[2] + 1;
         }
-        if (question.category.toLowerCase().includes("hate")) {
+        if (question.answer.toLowerCase().includes("hate")) {
           opsamling[3] = opsamling[3] + 1;
         }
       }
@@ -83,8 +83,34 @@
       .attr("height", function (d) {
         return d * 10;
       })
-      // Alle søjler er farvet 'teal'
-      .attr("fill", "teal");
+      // Farver søjler fordi jeg keder mig
+      .attr("fill", function (d) {
+          if (d == 0) {
+            return "white";
+          } if (d < 100) {
+            return "black";
+          } if (d >= 100 && d <= 200) {
+            return "red";
+          } if (d > 200 && d <= 300) {
+            return "blue";
+          } if (d > 300 && d <= 400) {
+            return "green";
+          } if (d > 400 && d <= 500) {
+            return "yellow";
+          } if (d > 500 && d <= 600) {
+            return "orange";
+          } if (d > 600 && d <= 700) {
+            return "purple";
+          } if (d > 700 && d <= 800) {
+            return "pink";
+          } if (d > 800 && d <= 900) {
+            return "brown";
+          } if (d > 900 && d <= 1000) {
+            return "grey";
+          } else {
+            return "teal";
+          }
+        });
     });
   </script>
 
