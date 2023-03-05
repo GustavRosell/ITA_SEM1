@@ -1,0 +1,71 @@
+<!-- Opgave 1: 
+1.1 Tilføj tre nye punkter nede i venstre hjørne. De skal forme hjørnerne af en retvinklet trekant.
+1.2. Gør punkternes radius mindre.
+1.3. Ændre punkternes farve til orange.
+1.4. Lav et “for loop” hvor du tilføjer 50 nye punkter til datasættet. Punkterne skal have forskellige koordinater, men du vælger selv hvilke. Husk at man kan indsætte nye elementer i et array med push(). Eksempel:
+dataset.push([50, 100]);
+1.5. Undersøg også følgende spørgsmål: Har det nogen betydning hvilken rækkefølge punkterne har i arrayet? 
+- Det har det ikke, da punkterne ikke er sorteret efter noget.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Scatter Plot</title>
+  <script type="text/javascript" src="d3.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <script type="text/javascript">
+    // Width og height
+    const w = 500;
+    const h = 200;
+
+    // Selve datasættet
+    const dataset = [
+      [15, 20],
+      [480, 90],
+      [250, 50],
+      [100, 33],
+      [330, 95],
+      [410, 12],
+      [475, 44]
+    ];
+
+    // Opgave 1.1: Tilføj tre nye punkter nede i venstre hjørne
+    dataset.push([15, 10]);
+    dataset.push([10, 20]);
+    dataset.push([5, 15]);
+
+    // Opgave 1.4: Lav et “for loop” hvor du tilføjer 50 nye punkter til datasættet
+    for (let i = 0; i < 50; i++) {
+      dataset.push([Math.floor(Math.random() * w), Math.floor(Math.random() * h)]);
+    }
+
+    // Lav SVG-elementet
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+
+    // Lave scatter plot (punktdiagram)
+    svg.selectAll("circle")
+      .data(dataset)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) {
+        // 'd' er et koordinat på formen [x, y]
+        return d[0]; // Første værdi i indre array (x)
+      })
+      .attr("cy", function (d) {
+        return d[1]; // Anden værdi i indre array (y)
+      })
+      .attr("r", function (d) {
+        return 3 + d[1] / 50; // Opgave 1.2: Gør punkternes radius mindre
+      })
+      .attr("fill", "orange"); // Opgave 1.3: Ændre punkternes farve til orange
+  </script>
+</body>
+
+</html>
