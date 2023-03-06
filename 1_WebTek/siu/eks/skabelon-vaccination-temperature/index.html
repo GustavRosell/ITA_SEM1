@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gennemsnitstemperaturen på vaccinationsdagene</title>
+  <script type="text/javascript" src="d3.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <p>Kig i browser-konsollen :)</p>
+
+  <script type="text/javascript">
+
+  d3.csv("covid-danmark-temperature-aalborg.csv").then(function (data) {
+    console.log("alt data:", data);
+    console.log("første række:", data[0]);
+
+
+    // Bemærk, at for at lave tekst om til tal, skal der bruges 'parseInt' eller 'parseFloat'.
+    // Se mere her: https://mdn.io/parseInt
+    console.log("antal daglige vaccinationer i første række:", parseInt(data[0].daily_vaccinations));
+    console.log("gennemsnitstemperaturen i første række:", parseFloat(data[0].tavg));
+
+
+    // Løsningen skal skrives herunder ved at anvende indholdet i `data`.
+
+
+
+    
+  });
+
+  </script>
+</body>
+
+</html>
