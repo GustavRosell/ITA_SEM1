@@ -49,17 +49,16 @@
             })
             // Y-koordinaten er højden af SVG-elementet minus datapunktet * 4
             .attr("y", function (d) {
-                return h - (d * 4);
+                return h - (d * 4); // kan fjerne * 4 for at "skalere"
             })
 
             // Bredden er fast - og afhænger af 'w' og antallet af datapunkter
             .attr("width", w / dataset.length - barPadding) // Padding skaber luft imellem søjler
             // Højden er datapunktet * 4. 
             .attr("height", function (d) {
-                return d * 4;
+                return d * 4; // kan fjerne *4 for at "skalere"
             })
-            // Alle søjler er farvet 'teal'
-            // ændrer farven på søjlerne over 50, bare fordi jeg er sej.
+            // Ændrer farverne fordi jeg keder mig
             .attr("fill", function (d) {
                 if (d > 50) {
                     return "orange";

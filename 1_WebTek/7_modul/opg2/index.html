@@ -1,0 +1,92 @@
+<!-- Opgave 2: Modificer et scatter plot
+Du skal modificere det således, at 
+2.1: Top-punktet på grafen vises meget tydeligt, så cirklen fx. bliver lidt større og rød, 
+2.2: og der eventuelt skrives noget tekst som viser den aktuelle x- og y-værdi for top-punktet.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Scatter Plot</title>
+  <script type="text/javascript" src="d3.js"></script>
+  <script type="" text/javascript" src="datasource.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <script type="text/javascript">
+    // Width og height
+    const w = 800;
+    const h = 800;
+
+    // Selve datasættet
+    const dataset = ds; //GetDataPoints(400);
+
+    // define domain limits
+    let xMin = d3.min(dataset, function (d) { return d[0]; });
+    let xMax = d3.max(dataset, function (d) { return d[0]; });
+
+    let yMin = d3.min(dataset, function (d) { return d[1]; });
+    let yMax = d3.max(dataset, function (d) { return d[1]; });
+
+    // Definerer topP til text
+    let topP = [];
+
+    // Lav en skala for x-aksen
+    const xScale = d3.scaleLinear()
+      .domain([xMin, xMax])
+      .range([10, w - 10]);
+    // Lav en skala for y-aksen
+    const yScale = d3.scaleLinear()
+      .domain([yMin, yMax])
+      .range([10, h - 10]);
+
+    // Lav SVG-elementet
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+
+    // Lave scatter plot (punktdiagram)
+    svg.selectAll("circle") // <-- Før var det 'rect'
+      .data(dataset)
+      .enter()
+      .append("circle") // <-- Før var det 'rect'
+      .attr("cx", function (d) {
+        // 'd' er et koordinat på formen [x, y]
+        return xScale(d[0]); // Første værdi i indre array (x)
+      })
+      .attr("cy", function (d) {
+        return yScale(d[1]); // Anden værdi i indre array (y)
+      })
+      .attr("r", 2) // Radius er en konstant på '5'
+
+      // Opgave 2.1: 
+      .attr("fill", function (d) {
+        if (d[1] == yMin) {
+          if (topP.length == 0) { // makker til text
+            topP.push(d);
+          }
+          return "red"
+        } else
+          return "black"
+      })
+
+    // Opgave 2.2: Skriv x og y værdi ud fra let topP
+    svg.selectAll("text")
+      .data(topP)
+      .enter()
+      .append("text")
+      .text(function (d) {
+        return "x: " + d[0] + " y: " + d[1];
+      })
+      .attr("x", function (d) {
+        return xScale(d[0]);
+      })
+      .attr("y", function (d) {
+        return yScale(d[1]);
+      });
+  </script>
+</body>
+
+</html>

@@ -18,21 +18,27 @@
     <script type="text/javascript">
         const dataset = ["peach", "pineapple", "passion", "papaya", "pomegranate"];
 
-        d3.select("body").selectAll("p")
+        d3.select("body").selectAll("div")
             .data(dataset)
             .enter()
-            .append("p")
+            .append("div")
             .text(function (d) {
                 // Datapunktet indgår i den tekst der indsættes - to steder!
                 return `Ordet "${d}" har en længde på ${d.length} bogstaver.`;
             })
             .style("color", function (d) {
+
                 // Denne funktion bruges til at farve teksten afhængigt af datapunktet 'd'
                 if (d.length >= 8) {
                     return "blue";
                 } else {
                     return "red";
                 }
+            })
+            .style("background-color", function (d, i) {
+                if (i % 2 == 0) {
+                    return "lightgrey";
+                } else return "white";
             });
     </script>
 </body>

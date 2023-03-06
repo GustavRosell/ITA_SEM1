@@ -1,0 +1,71 @@
+<!-- Opgave 1 - Undersøg eksemplet: Lav følgende ændringer:
+1.1 Tilføj tre nye punkter nede i venstre hjørne. De skal forme hjørnerne af en retvinklet trekant.
+1.2 Gør punkternes radius mindre.
+1.3 Ændre punkternes farve til orange.
+1.4 Lav et “for loop” hvor du tilføjer 50 nye punkter til datasættet. 
+1.5 Har det nogen betydning hvilken rækkefølge punkterne har i arrayet? 
+- Nej.
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Scatter Plot</title>
+  <script type="text/javascript" src="d3.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <script type="text/javascript">
+    // Width og height
+    const w = 500;
+    const h = 200;
+
+    // Selve datasættet
+    const dataset = [
+      [15, 20],
+      [480, 90],
+      [250, 50],
+      [100, 33],
+      [330, 95],
+      [410, 12],
+      [475, 44]
+    ];
+    // Opgave 1.1: Tilføjer 3 punkter = Retvinklet trekant
+    dataset.push([15, 130])
+    dataset.push([15, 180])
+    dataset.push([75, 180])
+
+    // Opgave 1.4: Lav et “for loop” hvor du tilføjer 50 nye punkter til datasættet. 
+    for (let i = 0; i < 50; i++) {
+      dataset.push([Math.floor(Math.random() * w), Math.floor(Math.random() * h)])
+    }
+
+    // Lav SVG-elementet
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", w)
+      .attr("height", h);
+
+    // Lave scatter plot (punktdiagram)
+    svg.selectAll("circle") // fordi vi skal generere cirkler
+      .data(dataset)
+      .enter()
+      .append("circle") // 
+      .attr("cx", function (d) {
+        // 'd' er et koordinat på formen [x, y]
+        return d[0]; // Første værdi i indre array (x)
+      })
+      .attr("cy", function (d) {
+        return d[1]; // Anden værdi i indre array (y)
+      })
+      .attr("r", function (d) { // 1.2: Ændre cirklernes radius
+        // return 5 + d[1] / 20;
+        return 5 + d[1] / 50;
+      })
+      .attr("fill", "orange"); // 1.3: Ændrer farven til orange
+  </script>
+</body>
+
+</html>
