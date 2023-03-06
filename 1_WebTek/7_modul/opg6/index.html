@@ -42,14 +42,14 @@ Få teksten på x-aksen til at stå lodret.
         .domain([0, d3.max(data, function (d) {
           return parseInt(d.daily_vaccinations);
         })])
-        .range([0, w]);
+        .range([10, w - 10]);
 
       // Skalering af y-akse
       const yScale = d3.scaleLinear()
         .domain([0, d3.max(data, function (d) {
           return parseFloat(d.tavg);
         })])
-        .range([h, 0]);
+        .range([10, h - 10]);
 
       // Lav SVG-elementet
       const svg = d3.select("body")
