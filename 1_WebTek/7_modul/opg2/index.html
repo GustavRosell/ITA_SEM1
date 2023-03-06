@@ -61,15 +61,22 @@ Du skal modificere det således, at
       })
       .attr("r", 2) // Radius er en konstant på '5'
 
-      // Opgave 2.1: 
+      // Opgave 2.1: farve
       .attr("fill", function (d) {
         if (d[1] == yMin) {
           if (topP.length == 0) { // makker til text
             topP.push(d);
           }
           return "red"
-        } else
-          return "black"
+        }
+      })
+      // Opgave 2.1: radius
+      .attr("r", function (d) {
+        if (d[1] == yMin) {
+          return "5";
+        } else {
+          return "2";
+        }
       })
 
     // Opgave 2.2: Skriv x og y værdi ud fra let topP
