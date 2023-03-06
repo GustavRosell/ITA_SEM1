@@ -35,8 +35,9 @@ Landets “happiness score” fra 2017, målt på en skala fra 0 til 100. (hapis
       // Løsningen skal skrives herunder ved at anvende indholdet i `data`.
 
       // Width og height
-      const w = 1000;
-      const h = 500;
+      const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+      const w = 1000 - margin.left - margin.right;
+      const h = 500 - margin.top - margin.bottom;
 
       // Skalering af x-akse
       const xScale = d3.scaleLinear()
@@ -50,13 +51,15 @@ Landets “happiness score” fra 2017, målt på en skala fra 0 til 100. (hapis
         .domain([0, d3.max(data, function (d) {
           return parseInt(d.hapiscore_whr_2017);
         })])
-        .range([10, h - 10]);
+        .range([h - 10, 10]);
 
       // SVG
       const svg = d3.select("body")
         .append("svg")
-        .attr("width", w)
-        .attr("height", h);
+        .attr("width", w + margin.left + margin.right)
+        .attr("height", h + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       // Bubble chart
       svg.selectAll("circle")
@@ -73,6 +76,18 @@ Landets “happiness score” fra 2017, målt på en skala fra 0 til 100. (hapis
           return Math.sqrt(parseInt(d.population_total_2017) / Math.PI);
         })
         .attr("fill", "blue")
+
+      // X-akse
+      const xAxis = d3.axisBottom(xScale);
+      svg.append("g")
+        .attr("transform", "translate(0," + (h - 10) + ")")
+        .call(xAxis);
+
+      // Y-akse
+      const yAxis = d3.axisLeft(yScale);
+      svg.append("g")
+        .attr("transform", "translate(10,0)")
+        .call(yAxis);
     });
   </script>
 </body>
