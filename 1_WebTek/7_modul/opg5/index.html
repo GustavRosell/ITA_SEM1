@@ -5,8 +5,6 @@ Her er en liste over de ændringer du har brug for at lave i koden:
 5.1: Der skal indføres skaleringsfunktioner som beskrevet i præsentationen fra i dag. Der er tale om to funktioner - en der kan skalere x-værdien og en der kan skalere y-værdien.
 5.2: Skaleringsfunktionerne skal anvendes der hvor koordinaterne indgår i koden. Så i stedet for at bruge ‘x’ direkte (eller rettere, ‘d[0]’), skal den altså igennem en skaleringsfunktion først.
 
-
-
 Test din løsning ved at ændre på størrelsen af dit SVG-tag.
 
 Test hvor const w = 500; og const h = 400;
@@ -16,9 +14,9 @@ Prøv et par andre størrelser efter eget valg.
 Tillægsspørgsmål:
 
 5.3: Kan du sikrer at cirklerne ikke rager ud over kanten og bliver “klippet over”?
-- det ved jeg ikke? ved margins måske?
+- Ja, ved at tilføje margin til svg'en, så den ikke rager ud over kanten. 
 5.4: Ville det give mening at lave en skaleringsfunktion til radius også? 
-- idk
+- Hvorfor?... kan ikke se hvorfor
 -->
 <!DOCTYPE html>
 <html>
@@ -33,8 +31,9 @@ Tillægsspørgsmål:
 <body>
   <script type="text/javascript">
     // Width og height
-    const w = 100;
-    const h = 100;
+    const margin = { top: 20, right: 20, bottom: 20, left: -50};
+    const w = 500 - margin.left - margin.right;
+    const h = 500 - margin.top - margin.bottom;
 
     // Selve datasættet
     const dataset = [
@@ -68,8 +67,10 @@ Tillægsspørgsmål:
     // Lav SVG-elementet
     const svg = d3.select("body")
       .append("svg")
-      .attr("width", w)
-      .attr("height", h);
+      .attr("width", w + margin.left + margin.right)
+      .attr("height", h + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Lave scatter plot (punktdiagram)
     svg.selectAll("circle") // <-- Før var det 'rect'
