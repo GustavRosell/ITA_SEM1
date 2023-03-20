@@ -1,0 +1,45 @@
+<script src="d3.js"></script>
+
+
+// Delopgave 1
+// TODO: Opret en lineær skala med variabelnavnet 'scale'
+const scale1 = d3.scaleLinear()
+    .domain([50, 250])
+    .range([200, 1000]);
+// Her testes scale-funktionen
+
+console.log("--------------------");
+console.log("Delopgave 1");
+console.log("--------------------");
+console.log(scale1(50));  // Skal udskrive '200'
+console.log(scale1(100)); // Skal udskrive '400'
+console.log(scale1(250)); // Skal udskrive '1000'
+console.log("--------------------\n");
+
+// Delopgave 2
+// TODO: Opret en lineær skala med variabelnavnet 'scale'
+const scale2 = d3.scaleLinear()
+    .domain([0, 200])
+    .range([100, 200]);
+
+// Her testes scale-funktionen
+console.log("Delopgave 2");
+console.log("--------------------");
+console.log(scale2(0));   // Skal udskrive '100'
+console.log(scale2(100)); // Skal udskrive '150'
+console.log(scale2(200)); // Skal udskrive '200'
+console.log("--------------------\n");
+
+// Delopgave 3
+// TODO: Opret en lineær skala med variabelnavnet 'scale'
+const scale3 = d3.scaleLinear()
+    .domain([0, 100])
+    .range([500, 0]);
+
+// Her testes scale-funktionen
+console.log("Delopgave 3");
+console.log("--------------------");
+console.log(scale3(0));   // Skal udskrive '500'
+console.log(scale3(50)); // Skal udskrive '250'
+console.log(scale3(100)); // Skal udskrive '0'
+console.log("--------------------");

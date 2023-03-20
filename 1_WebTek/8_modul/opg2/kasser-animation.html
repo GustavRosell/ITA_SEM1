@@ -1,0 +1,130 @@
+<!-- Opgave 2: Lav nye kasser
+  2.1) Lav en lille kasse, hvor width, height samt stroke-width vokser over nogle få sekunder. Sørg for at “stroke” og “fill” har to forskellige farver, så de kan skelnes fra hinanden.
+  2.2) Lav en trekant som et “polygon”. Animér alle tre hjørners position og figurens farve over nogle sekunder.
+  2.3 + ekstra) lav det så de tre kugler hopper op og ned, men hvor de starter forskudt af hinanden: 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Animerede kasser</title>
+  <script type="text/javascript" src="../d3.js"></script>
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+  <h1>Animerede kasser</h1>
+
+  <button id="klik"><b>Tryk her for at starte animationen!</b></button>
+
+  <br />
+
+  <script type="text/javascript">
+
+    const data = ["red"] // kasse
+    // 2.2) lav trekant
+    const data2 = [["200,10", "250,190", "160,210", "#4C5270"]]
+    // 2.3) Lav tre kugler, der hopper op og ned, ved siden af hinanden, på en række.
+    const data3 = [100, 200, 300]
+
+    // Lav en svg
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", 500)
+      .attr("height", 1000)
+
+    // Opgave 2.1) Laver kasse
+    svg.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", 30)
+      .attr("y", 100)
+      .attr("width", 50)
+      .attr("height", 50)
+      .attr("stroke", "green")
+      .attr("stroke-width", 15)
+      .attr("fill", function (d) { return d; });
+
+    // Opgave 2.2) Laver Polygon
+    svg.selectAll("polygon")
+      .data(data2)
+      .enter()
+      .append("polygon")
+      .attr("stroke", "green")
+      .attr("fill", "red")
+      .attr("points", function (d) {
+        return d.slice(0, 3).join(" ");
+      });
+
+
+    // Opgave 2.3) Laver tre kugler, der hopper op og ned, ved siden af hinanden, på en række.
+    svg.selectAll("circle")
+      .data(data3)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) {
+        return d;
+      })
+      .attr("cy", 500)
+      .attr("r", 30)
+      .attr("fill", "red")
+      .attr("stroke", "green")
+      .attr("stroke-width", 2);
+
+    function hop() {
+      const delayFactor = 500;
+      const duration = 1000;
+
+      d3.selectAll("circle")
+        .each(function (d, i) {
+          const circle = d3.select(this);
+          const delay = i * delayFactor;
+          const startY = 500;
+          const endY = 400;
+
+          circle.transition()
+            .delay(i * delayFactor)
+            .duration(duration)
+            .attr("cy", endY)
+            .transition()
+            .duration(duration)
+            .attr("cy", startY);
+        });
+    }
+
+    // Knappen vælges via dens id 'klik'
+    d3.select("#klik")
+      // Koden herunder køres kun ved tryk på knappen
+      .on("click", function () {
+
+        // Vælg alle 'rect'
+        d3.selectAll("rect")
+          .transition() // Start en animation
+          // Alt herunder er slutresultatet for animationen
+          .duration(2000)
+          .attr("width", 100)
+          .attr("height", 100)
+          .attr("stroke-width", 20)
+          .attr("fill", "red")
+          .attr("stroke", "green");
+
+        // Animér polygonets alle tre hjørners position og figurens farve over nogle sekunder:
+        d3.selectAll("polygon")
+          .transition()
+          .duration(2000)
+          .attr("points", "400,20 400,250 220,250")
+          .attr("fill", "red")
+          .attr("stroke-width", 20);
+
+        // 2.3)
+        hop();
+      });
+
+  </script>
+</body>
+
+</html>
