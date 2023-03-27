@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Jeopardy data</title>
+  <script src="d3.js"></script>
+</head>
+
+<body>
+  <h2>Søg i Jeopardy spørgsmålene</h2>
+  <div>
+    <p>Indtast flere søgeord adskilt af mellemrum.</p>
+    <label for="searchInput">Søg efter:</label>
+    <input type="text" id="searchInput" name="searchInput">
+    <button id="searchButton">Søg</button>
+  </div>
+
+  <h2>Resultater</h2>
+  <div id="resultContainer"></div>
+
+
+  <script>
+    let jeopardyData;
+    const w = 200; // Width på barchart
+    const h = 200; // Height på barchart
+    const barPadding = 5; // Padding mellem barchart søjlerne
+    let svg;
+
+    // Loader jeopardy-data og gør det tilgængeligt
+    d3.json("JEOPARDY_QUESTIONS.json").then(function (data) {
+      jeopardyData = data;
+    });
+
+    // Event listener for søg knappen
+    const searchButton = document.getElementById("searchButton");
+    searchButton.addEventListener("click", function () {
+      const searchInput = document.getElementById("searchInput").value;
+      const searchTerms = searchInput.trim().toLowerCase().split(/\s+/); // Splittter søgeordene og fjerner whitespace
+
+      // Reset resultContainer HTML og fjern SVG-elementet
+      const resultContainer = document.getElementById("resultContainer");
+      resultContainer.innerHTML = "";
+      if (svg) {
+        svg.remove();
+      }
+
+      // Optælling for hvert søgeord
+      const termCounts = searchTerms.map(term => {
+        return { term: term, count: 0 };
+      });
+
+      // Optælling for hvert spørgsmål
+      for (let question of jeopardyData) {
+        for (let termCount of termCounts) {
+          if (question.category.toLowerCase().includes(termCount.term)) {
+            termCount.count += 1;
+          }
+        }
+      }
+
+      // Vis antal forekomster for hvert søgeord i resultContainer
+      for (let termCount of termCounts) {
+        const resultText = `Ordet "${termCount.term}" forekommer ${termCount.count} gange.`;
+        const resultP = document.createElement("p");
+        resultP.innerText = resultText;
+        resultContainer.appendChild(resultP);
+      }
+
+      const scale = d3.scaleLinear()
+        .domain([0, d3.max(termCounts, function (d) { return d.count; })])
+        .range([0, h]);
+
+      // Vis søjlediagram med optælling for hvert søgeord
+      svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      svg.selectAll("rect")
+        .data(termCounts)
+        .enter()
+        .append("rect")
+        .attr("x", function (d, i) {
+          return i * (w / termCounts.length);
+        })
+        .attr("y", function (d) {
+          return h - scale(d.count);
+        })
+        .attr("width", w / termCounts.length - barPadding)
+        .attr("height", function (d) {
+          return scale(d.count);
+        })
+        .attr("fill", "teal")
+        // Tilføj on click som sorterer bars
+        .on("click", function () {
+          svg.selectAll("rect")
+            .sort(function (a, b) {
+              return d3.ascending(a.count, b.count);
+            })
+            .transition()
+            .duration(1000)
+            .attr("x", function (d, i) {
+              return i * (w / termCounts.length);
+            });
+          // Flyt tekster med de sorteret søjler
+          svg.selectAll("text")
+            .sort(function (a, b) {
+              return d3.ascending(a.count, b.count);
+            })
+            .transition()
+            .duration(1000)
+            .attr("x", function (d, i) {
+              return i * (w / termCounts.length) + (w / termCounts.length - barPadding) / 2;
+            });
+        })
+
+        // Tilføj mouseover og mouseout events til søjlerne
+        .on("mouseover", function (d) {
+          d3.select(this).attr("fill", "orange")
+        })
+        .on("mouseout", function (d) {
+          d3.select(this).attr("fill", "teal");
+          d3.select("#tooltip").remove();
+        })
+        .append("title")
+        .text(function (d) {
+          return "Ordet " + "'" + d.term + "'" + " forekommer: " + d.count + " gange.";
+        });
+
+      // Tilføj tekst til søjlerne, som flyttes med søjlerne når man sorterer ved at klikke på dem
+      svg.selectAll("text")
+        .data(termCounts)
+        .enter()
+        .append("text")
+        .text(function (d) {
+          return d.count;
+        })
+        .attr("text-anchor", "middle")
+        .attr("x", function (d, i) {
+          return i * (w / termCounts.length) + (w / termCounts.length - barPadding) / 2;
+        })
+        .attr("y", function (d) {
+          return h - scale(d.count) + 14;
+        })
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "white")
+        .attr("font-weight", "bold");
+    })
+  </script>
+</body>
+
+</html>
