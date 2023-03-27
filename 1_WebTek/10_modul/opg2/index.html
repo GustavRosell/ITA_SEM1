@@ -1,0 +1,95 @@
+<!-- Opgave 7: Bubble chart
+
+Datasættet indeholder en lang række lande, og ved hvert land finder du følgende oplysninger:
+
+Befolkningsstørrelsen i 2017 (population_total_2017)
+Gennemnitlig arbejdsuge i 2017 målt i timer (working_hours_per_week_2017)
+Landets “happiness score” fra 2017, målt på en skala fra 0 til 100. (hapiscore_whr_2017)
+
+6.1: Du skal plotte “happiness” op imod “arbejdsuge (timer)” som et punktdiagram.
+6.2: Når du har gjort det, skal du medtage befolkningsstørrelsen som den tredje dimension. Det skal du konkret gøre ved at lade radius af hvert punkt i diagrammet afhænge af landets befolkningsstørrelse. På den måde ender du med en bubble chart.
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Opgave 7</title>
+  <script type="text/javascript" src="d3.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <p>Kig i browser-konsollen :)</p>
+
+  <script type="text/javascript">
+
+    d3.csv("work-week-happiness-population.csv").then(function (data) {
+      console.log("alt data:", data);
+      console.log("første række:", data[0]);
+
+      // Bemærk, at for at lave tekst om til tal, skal der bruges 'parseInt' eller 'parseFloat'.
+      // Se mere her: https://mdn.io/parseInt
+      console.log("hapiscore i første række:", parseInt(data[0].hapiscore_whr_2017));
+      console.log("arbejdstimer pr uge i første række:", parseFloat(data[0].working_hours_per_week_2017));
+
+      // Løsningen skal skrives herunder ved at anvende indholdet i `data`.
+
+      // Width og height
+      const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+      const w = 1000 - margin.left - margin.right;
+      const h = 500 - margin.top - margin.bottom;
+
+      // Skalering af x-akse
+      const xScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function (d) {
+          return parseFloat(d.working_hours_per_week_2017);
+        })])
+        .range([10, w - 10]);
+
+      // Skalering af y-akse
+      const yScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function (d) {
+          return parseInt(d.hapiscore_whr_2017);
+        })])
+        .range([h - 10, 10]);
+
+      // SVG
+      const svg = d3.select("body")
+        .append("svg")
+        .attr("width", w + margin.left + margin.right)
+        .attr("height", h + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // Bubble chart
+      svg.selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) {
+          return xScale(parseFloat(d.working_hours_per_week_2017));
+        })
+        .attr("cy", function (d) {
+          return yScale(parseInt(d.hapiscore_whr_2017));
+        })
+        .attr("r", function (d) {
+          return Math.sqrt(parseInt(d.population_total_2017) / Math.PI);
+        })
+        .attr("fill", "blue")
+
+      // X-akse
+      const xAxis = d3.axisBottom(xScale);
+      svg.append("g")
+        .attr("transform", "translate(0," + (h - 10) + ")")
+        .call(xAxis);
+
+      // Y-akse
+      const yAxis = d3.axisLeft(yScale);
+      svg.append("g")
+        .attr("transform", "translate(10,0)")
+        .call(yAxis);
+    });
+  </script>
+</body>
+
+</html>
