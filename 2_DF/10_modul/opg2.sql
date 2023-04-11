@@ -5,12 +5,14 @@ Opret view i music databasen med
 
 -- 2.1) titel og antal tracks på alle albums
 
-CREATE VIEW opg201 AS 
-SELECT tracks."Name", tracks."TrackId"
-FROM tracks;
+CREATE VIEW opg22 AS 
+SELECT albums."Title", COUNT(tracks."Name") as "Total Tracks"
+FROM albums
+JOIN tracks ON albums."AlbumId" = tracks."AlbumId"
+GROUP BY albums."Title";
 
 SELECT * 
-FROM opg201
+FROM opg22
 
 -- 2.2) navn, antal tracks og total tid for alle spillelister
 
