@@ -1,0 +1,60 @@
+/* Opgave 7
+
+Herunder er en stump kode som tilføjer nogle cirkler på siden hvor den placeres. Besvar følgende spørgsmål:
+
+7.1; Cirklerne forekommer under hinanden. Hvad skal ændres i koden for at de forekommer ved siden af hinanden?
+- Der skal byttes om på cx og cy's værdier, for at skubbe dem hen ad x-aksen i stedet for y-aksen.
+
+7.2: Hvad skal ændres i koden, hvis det skal være sådan, at hvis data elementet er mindre end 10, så skal cirklen være
+orange, ellers skal den være rød.
+- Der skal tilføjes et 'if' statement nederst i koden ved "fill", som jeg har lavet om til en style i stedet.
+
+7.3: Hvis datasættet indeholder lidt for store værdier, vil cirklerne overlappe. Hvad skal ændres i koden for at ikke
+sker?
+- man kan lave størrelsen af svg'en større, altså; const Width + const Height
+
+7.4: Hvad skal ændres i koden, så at cirklerne vises trinvis? Dvs. først vises den første cirkel og efter 3 sekunder
+vises cirkel nummer 2 osv.
+- man kunne tilføje en transition med et delay eller noget i farven, evt gøre dem transparent til at starte med, 
+og give dem en farve efter 3 sek eller noget idk
+
+7.5: Cirklerne vises som udfyldte. Hvad skal ændres i koden, hvis man vil have cirkler som ikke er udfyldte med blot har
+en kant?
+- fill med transparent og give dem en outline i stedet'
+
+*/
+
+<script type="text/javascript">
+    // opg 7.3:
+    const Width = 600;
+    const Height = 600;
+
+    // Selve datasættet
+    const dataset = [15, 5, 10, 25];
+
+    // Lav SVG-elementet
+    const svg = d3.select("body")
+        .append("svg")
+        .attr("width", Width)
+        .attr("height", Height);
+
+    // Lav cirkler
+    svg.selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        // opg 7.1: 
+        .attr("cx", function (d, i) {
+            return 50 + i * 80;
+        })
+        .attr("cy", 50)
+        .attr("r", function (d) {
+            return d * 2;
+        })
+        // opg 7.2:
+        .style("color", function (d) {
+            if (d < 10) {
+                return "orange";
+            } else return "red;"
+            });
+</script>
