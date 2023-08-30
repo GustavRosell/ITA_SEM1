@@ -2,37 +2,39 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title></title>
-
+  <title>Beregning af kondital</title>
   <script type="text/javascript" src="kondilogik.js"></script>
-
+  
   <script type="text/javascript">
 
     function onClickCalculate() {
       var erMand = document.getElementById("mand").checked;
-      var løbedistance=document.getElementById("løbedistance").value;
+      var løbedistance = parseFloat(document.getElementById("løbedistance").value);
+      var alder = parseInt(document.getElementById("alder").value);
 
-      var result = BeregnKondiTal(løbedistance, erMand).toPrecision(3);
+      var kondital = BeregnKondiTal(løbedistance, erMand);
+      var konditalNiveau = VurderKondiTalNiveau(kondital, alder);
 
-      document.getElementById("kondi").innerHTML= result;
+      document.getElementById("kondi").innerHTML = kondital.toFixed(2);
+      document.getElementById("kondiNiveau").innerHTML = konditalNiveau;
     }
 
-    function init(){
-    document.getElementById("btKondital").onclick = onClickCalculate;
+    function init() {
+      document.getElementById("btKondital").onclick = onClickCalculate;
     }
-  
-    </script>
+
+  </script>
 
   <style>
-  label, input {
-  cursor: pointer;
-  }
-  #kondi{
-    padding: 5px;
-    width: 160px;
-    background-color: #ccc;
-    font-weight: bold;
-  }
+    label, input {
+      cursor: pointer;
+    }
+    #kondi {
+      padding: 5px;
+      width: 160px;
+      background-color: #ccc;
+      font-weight: bold;
+    }
   </style>
 
 </head>
@@ -40,19 +42,20 @@
   <h1>Beregning af kondital</h1>
   <hr>
   Tast din løbedistance i meter: <input type="text" id="løbedistance"> 
-
+  <br>
+  Tast din alder: <input type="text" id="alder"> 
 
   <p>
   Vælg dit køn: <br>
-  <input type="radio" id="mand" name = "køn" checked>
+  <input type="radio" id="mand" name="køn" checked>
   <label for="mand">Mand</label>
-  <input type="radio" id="kvinde" name = "køn">
+  <input type="radio" id="kvinde" name="køn">
   <label for="kvinde">Kvinde</label>
 
   <p>
 
   <button id="btKondital">Beregn dit kondital</button>
-  <p><div id="kondi">...</div>
-
+  <p><div>Kondital: <span id="kondi">...</span></div>
+  <div>Kondital niveau: <span id="kondiNiveau">...</span></div>
 </body>
 </html>
