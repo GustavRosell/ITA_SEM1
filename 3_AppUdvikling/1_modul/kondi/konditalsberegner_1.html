@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <script type="text/javascript" src="kondilogik.js"></script>
+
+  <script type="text/javascript">
+
+    function onClickCalculate() {
+      var erMand = document.getElementById("mand").checked;
+      var løbedistance=document.getElementById("løbedistance").value;
+
+      var result = BeregnKondiTal(løbedistance, erMand).toPrecision(3);
+
+      document.getElementById("kondi").innerHTML= result;
+    }
+
+    function init(){
+    document.getElementById("btKondital").onclick = onClickCalculate;
+    }
+  
+    </script>
+
+  <style>
+  label, input {
+  cursor: pointer;
+  }
+  #kondi{
+    padding: 5px;
+    width: 160px;
+    background-color: #ccc;
+    font-weight: bold;
+  }
+  </style>
+
+</head>
+<body onload="init()">
+  <h1>Beregning af kondital</h1>
+  <hr>
+  Tast din løbedistance i meter: <input type="text" id="løbedistance"> 
+
+
+  <p>
+  Vælg dit køn: <br>
+  <input type="radio" id="mand" name = "køn" checked>
+  <label for="mand">Mand</label>
+  <input type="radio" id="kvinde" name = "køn">
+  <label for="kvinde">Kvinde</label>
+
+  <p>
+
+  <button id="btKondital">Beregn dit kondital</button>
+  <p><div id="kondi">...</div>
+
+</body>
+</html>
